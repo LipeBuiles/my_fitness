@@ -1,12 +1,14 @@
-import mysql.connector
+from dotenv import load_dotenv
 from mysql.connector import Error
 import bcrypt
-from dotenv import load_dotenv
-import os
-import time
 import getpass
+import mysql.connector
+import os
 import sys
+import time
+from colorama import init, Fore, Back, Style
 
+init()
 load_dotenv()
 
 def connect_to_database():
@@ -20,7 +22,7 @@ def connect_to_database():
         if connection.is_connected():
             return connection
     except Error as e:
-        print(f"Error al conectar a la base de datos: {e}")
+        print(Fore.RED + f"\nError al conectar a la base de datos: {e}")
         return None
 
 def verify_password(stored_password, provided_password):
@@ -32,9 +34,9 @@ def block_user(connection, user_name):
         query = "UPDATE users SET state = 2 WHERE user_name = %s"
         cursor.execute(query, (user_name,))
         connection.commit()
-        print("\nEl usuario ha sido bloqueado después de 3 intentos fallidos.")
+        print(Fore.WHITE + Back.RED + "\nEl usuario ha sido bloqueado después de 3 intentos fallidos." + Style.RESET_ALL)
     except Error as e:
-        print(f"\nError al bloquear el usuario: {e}")
+        print(Fore.RED + f"\nError al bloquear el usuario: {e}")
     finally:
         cursor.close()
 
@@ -46,7 +48,7 @@ def animate_login():
     puntos = 0
 
     for _ in range(iteraciones):
-        sys.stdout.write(f'\r{texto}{"." * puntos}')
+        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}')
         sys.stdout.flush()
         time.sleep(delay)
         puntos += 1
@@ -63,7 +65,7 @@ def login_user(connection, user_name):
         if result:
             stored_password, state = result
             if state == 2:
-                print("\nEl usuario está bloqueado. No se permite el inicio de sesión.")
+                print(Fore.WHITE + Back.RED + "\nEl usuario está bloqueado. No se permite el inicio de sesión." + Style.RESET_ALL + "\n")
                 return False
 
             if state == 0:
@@ -79,7 +81,7 @@ def login_user(connection, user_name):
                     return True
                 else:
                     attempts += 1
-                    print(f"\nContraseña incorrecta. Intento {attempts} de 3. Si falla en 3 intentos, su cuenta será bloqueada.")
+                    print(Fore.RED + f"\nContraseña incorrecta. Intento {attempts} de 3. Si falla en 3 intentos, su cuenta será bloqueada.")
                     if attempts == 3:
                         block_user(connection, user_name)
                         return False
