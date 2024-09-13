@@ -25,13 +25,13 @@ def hash_password(password):
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
     return hashed_password.decode('utf-8')
 
-def insert_user(connection, name, user_name, email, password, estado):
+def insert_user(connection, name, user_name, email, password, state):
     try:
         cursor = connection.cursor()
         hashed_password = hash_password(password)
         query = """INSERT INTO users (name, user_name, email, password, state)
                    VALUES (%s, %s, %s, %s, %s)"""
-        values = (name, user_name, email, hashed_password, estado)
+        values = (name, user_name, email, hashed_password, state)
         cursor.execute(query, values)
         connection.commit()
         print("\nUsuario insertado con éxito")
@@ -43,5 +43,5 @@ def insert_user(connection, name, user_name, email, password, estado):
 if __name__ == "__main__":
     conn = connect_to_database()
     if conn:
-        insert_user(conn, 'Juan Felipe Builes', 'elpinchepastel', 'elpinchepastel@gmail.com', 'Pactia.2015***', 1)
+        insert_user(conn, 'Juan Felipe Builes', 'elpinchepastel', 'elpinchepastel@gmail.com', 'Pactia.2015***', '1')
         conn.close()

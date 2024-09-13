@@ -11,7 +11,7 @@ CREATE TABLE users (
   name VARCHAR(50),
   user_name VARCHAR(20),
   email VARCHAR(100),
-  password VARCHAR(200),
+  password VARCHAR(64),
   state ENUM('0', '1', '2') NOT NULL,
   CONSTRAINT chk_state CHECK (state IN ('0', '1', '2'))
 );
@@ -31,12 +31,12 @@ CREATE TABLE health (
   distance FLOAT(5, 2) CHECK (distance <= 999.99),
   moviment INT CHECK (moviment <= 300),
   in_training ENUM('0', '1') NOT NULL,
-  user_create INT,
+  id_user_create INT,
   create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  user_update INT,
+  id_user_update INT,
   update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_create) REFERENCES users(id),
-  FOREIGN KEY (user_update) REFERENCES users(id)
+  FOREIGN KEY (id_user_create) REFERENCES users(id),
+  FOREIGN KEY (id_user_update) REFERENCES users(id)
 );
 
 -- Training table
