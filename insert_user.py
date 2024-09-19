@@ -1,7 +1,7 @@
-import mysql.connector
+from dotenv import load_dotenv
 from mysql.connector import Error
 import bcrypt
-from dotenv import load_dotenv
+import mysql.connector
 import os
 
 load_dotenv()
@@ -25,23 +25,19 @@ def hash_password(password):
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
     return hashed_password.decode('utf-8')
 
-def insert_user(connection, name, user_name, email, password, state):
+def insert_user(name, user_name, email, password, state):
     try:
-        cursor = connection.cursor()
+        conn = connect_to_database()
+        cursor = conn.cursor()
         hashed_password = hash_password(password)
         query = """INSERT INTO users (name, user_name, email, password, state)
                    VALUES (%s, %s, %s, %s, %s)"""
         values = (name, user_name, email, hashed_password, state)
         cursor.execute(query, values)
-        connection.commit()
+        conn.commit()
         print("\nUsuario insertado con éxito")
+        conn.close()
     except Error as e:
         print(f"\nError al insertar datos: {e}")
     finally:
         cursor.close()
-
-if __name__ == "__main__":
-    conn = connect_to_database()
-    if conn:
-        insert_user(conn, 'Juan Felipe Builes', 'elpinchepastel', 'elpinchepastel@gmail.com', 'Pactia.2015***', '1')
-        conn.close()

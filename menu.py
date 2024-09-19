@@ -1,3 +1,5 @@
+from menu_users import menu_users
+
 def principal_menu():
 
     print("\nSeleccione una opción:\n")
@@ -10,16 +12,14 @@ def principal_menu():
         
         match option:
             case '1':
-                print("Gestión de usuarios")
+                menu_users()
             case '2':
-                print("Gestión de registros")
+                print("Gestión de salud")
             case '3':
                 print("Saliendo...")
                 break
             case _:
                 print("Opción no válida, por favor intente de nuevo.")
-
-    
 
 if __name__ == "__main__":
     principal_menu()
