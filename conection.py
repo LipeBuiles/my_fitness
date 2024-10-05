@@ -1,11 +1,11 @@
-from dotenv import load_dotenv
-from mysql.connector import Error
-import bcrypt
-import getpass
-import mysql.connector
-import os
-import sys
 import time
+import sys
+import os
+import mysql.connector
+import getpass
+import bcrypt
+from mysql.connector import Error
+from dotenv import load_dotenv
 from colorama import init, Fore, Back, Style
 
 init()

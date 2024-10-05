@@ -1,6 +1,7 @@
-from insert_user import insert_user
-import os
 import platform
+import os
+from read_users import fetch_users_from_db
+from insert_user import insert_user
 
 def clear_console():
     current_os = platform.system()
@@ -10,26 +11,29 @@ def clear_console():
         os.system("clear")
 
 def menu_users():
-
+    
     clear_console()
 
-    print("\nSeleccione una opción:\n")
-    print("1. Ver los usarios")
-    print("2. Crear los usuarios")
-    print("3. Editar los usuarios")
-    print("4. Eliminar los usuarios")
-    print("5. Salir\n")
-
     while True:
+
+
+        print("\nMenú de gestión de usuarios, las opciones con las siguientes:\n")
+        print("1. Ver los usarios")
+        print("2. Crear los usuarios")
+        print("3. Editar los usuarios")
+        print("4. Eliminar los usuarios")
+        print("5. Salir\n")
+
+    
         option = input("Selecciona una opción: ")
         
         match option:
             case '1':
-                print("1")
+                fetch_users_from_db()
 
             case '2':
-                name = input("Ingrese el nombre del usuario: ")
-                user_name = input("Ingrese el nombre de usuario: ")
+                name = input("\nIngrese el nombre completo del usuario: ")
+                user_name = input("Ingrese el nombre personalizado para iniciar sesón: ")
                 email = input("Ingrese el correo electrónico: ")
                 password = input("Ingrese la contraseña: ")
                 state = input("""Ingrese el estado del usuario: \n

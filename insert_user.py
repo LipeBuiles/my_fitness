@@ -1,24 +1,24 @@
-from dotenv import load_dotenv
+from colorama import Fore, Style
 from mysql.connector import Error
 import bcrypt
-import mysql.connector
-import os
+import sys
+import time
+from conection import connect_to_database
+    
+def animate_login():
+    print("\n")
+    texto = "Insertando usuario "
+    iteraciones = 50
+    delay = 0.05
+    puntos = 0
 
-load_dotenv()
-
-def connect_to_database():
-    try:
-        connection = mysql.connector.connect(
-            host=os.getenv('DB_HOST'),
-            database=os.getenv('DB_DATABASE'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD')
-        )
-        if connection.is_connected():
-            return connection
-    except Error as e:
-        print(f"\nError al conectar a la base de datos: {e}")
-        return None
+    for _ in range(iteraciones):
+        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
+        sys.stdout.flush()
+        time.sleep(delay)
+        puntos += 1
+    
+    print("\n")
 
 def hash_password(password):
     salt = bcrypt.gensalt()
@@ -35,9 +35,12 @@ def insert_user(name, user_name, email, password, state):
         values = (name, user_name, email, hashed_password, state)
         cursor.execute(query, values)
         conn.commit()
+        animate_login()
         print("\nUsuario insertado con éxito")
         conn.close()
+
     except Error as e:
         print(f"\nError al insertar datos: {e}")
+
     finally:
         cursor.close()
