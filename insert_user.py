@@ -1,9 +1,9 @@
-from colorama import Fore, Style
-from mysql.connector import Error
-import bcrypt
-import sys
 import time
+import sys
+import bcrypt
+from mysql.connector import Error
 from conection import connect_to_database
+from colorama import Fore, Style
     
 def animate_login():
     print("\n")

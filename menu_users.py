@@ -1,7 +1,8 @@
-import platform
-import os
-from read_users import fetch_users_from_db
 from insert_user import insert_user
+from read_users import fetch_users_from_db
+from update_user import *
+import os
+import platform
 
 def clear_console():
     current_os = platform.system()
@@ -45,7 +46,9 @@ def menu_users():
                 insert_user(name, user_name, email, password, state)
                 
             case '3':
-                print("3")
+                print(list_users())
+                id_user = int(input("\nIngrese el id del usuario a editar: "))
+                update_user(*get_user(id_user))
             case '4':
                 print("4")
             case '5':
