@@ -1,3 +1,4 @@
+from delete_user import *
 from insert_user import insert_user
 from read_users import fetch_users_from_db
 from update_user import *
@@ -12,7 +13,7 @@ def clear_console():
         os.system("clear")
 
 def menu_users():
-    
+    from menu import principal_menu
     clear_console()
 
     while True:
@@ -23,7 +24,8 @@ def menu_users():
         print("2. Crear los usuarios")
         print("3. Editar los usuarios")
         print("4. Eliminar los usuarios")
-        print("5. Salir\n")
+        print("5. Regresar al menú principal")
+        print("6. Salir\n")
 
     
         option = input("Selecciona una opción: ")
@@ -50,8 +52,12 @@ def menu_users():
                 id_user = int(input("\nIngrese el id del usuario a editar: "))
                 update_user(*get_user(id_user))
             case '4':
-                print("4")
+                print(list_users())
+                id_user = int(input("\nIngrese el id del usuario a eliminar: "))
+                delete_user(id_user)
             case '5':
+                principal_menu()
+            case '6':
                 print("Saliendo...")
                 break
 

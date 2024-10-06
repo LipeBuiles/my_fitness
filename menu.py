@@ -1,8 +1,19 @@
 from menu_users import menu_users
+import os
+import platform
+
+
+def clear_console():
+    current_os = platform.system()
+    if current_os == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
 
 def principal_menu():
 
     while True:
+        clear_console()
 
         print("\nBienvenido a la aplicación, este es el menú princial con las siguientes opciones:\n")
         print("1. Gestión de usuarios")

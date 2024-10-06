@@ -34,8 +34,6 @@ def list_users():
 
 def get_user(id_user):
 
-    list_users = read_users()[1]
-
     users = read_users()[0]
     for index, user in users.iterrows():
         if user['id'] == id_user:
