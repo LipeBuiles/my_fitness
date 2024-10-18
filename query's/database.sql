@@ -127,4 +127,3 @@ CREATE TABLE stride_cm (
     stride_max INT CHECK (stride_max <= 300),
     FOREIGN KEY (id_training) REFERENCES training (id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci;
-

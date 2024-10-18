@@ -18,8 +18,7 @@ def principal_menu():
         print("\nBienvenido a la aplicación, este es el menú princial con las siguientes opciones:\n")
         print("1. Gestión de usuarios")
         print("2. Gestión de registros")
-        print("3. Regresar al menú principal")
-        print("4. Salir\n")
+        print("3. Salir\n")
 
         option = input("Selecciona una opción: ")
         
@@ -29,7 +28,7 @@ def principal_menu():
             case '2':
                 print("Gestión de salud")
             case '3':
-                print("Saliendo...")
+                print("\nSaliendo...")
                 break
             case _:
                 print("Opción no válida, por favor intente de nuevo.")

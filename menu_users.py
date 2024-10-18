@@ -13,11 +13,10 @@ def clear_console():
         os.system("clear")
 
 def menu_users():
-    from menu import principal_menu
+    
     clear_console()
 
     while True:
-
 
         print("\nMenú de gestión de usuarios, las opciones con las siguientes:\n")
         print("1. Ver los usarios")
@@ -56,6 +55,7 @@ def menu_users():
                 id_user = int(input("\nIngrese el id del usuario a eliminar: "))
                 delete_user(id_user)
             case '5':
+                from menu import principal_menu
                 principal_menu()
             case '6':
                 print("Saliendo...")
@@ -63,3 +63,6 @@ def menu_users():
 
             case _:
                 print("Opción no válida, por favor intente de nuevo.")
+
+if __name__ == "__main__":
+    menu_users()
