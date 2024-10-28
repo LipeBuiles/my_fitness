@@ -1,9 +1,11 @@
-from delete_user import *
-from insert_user import insert_user
-from read_users import fetch_users_from_db
-from update_user import *
-import os
+import time
+import sys
 import platform
+import os
+from update_user import *
+from read_users import fetch_users_from_db
+from insert_user import insert_user
+from delete_user import *
 
 def clear_console():
     current_os = platform.system()
@@ -59,7 +61,8 @@ def menu_users():
                 principal_menu()
             case '6':
                 print("Saliendo...")
-                break
+                time.sleep(3)
+                sys.exit()
 
             case _:
                 print("Opción no válida, por favor intente de nuevo.")

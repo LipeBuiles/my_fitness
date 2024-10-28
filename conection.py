@@ -1,6 +1,7 @@
 import time
 import sys
 import os
+import json
 import mysql.connector
 import getpass
 import bcrypt
@@ -58,12 +59,12 @@ def animate_login():
 def login_user(connection, user_name):
     try:
         cursor = connection.cursor()
-        query = "SELECT password, state FROM users WHERE user_name = %s"
+        query = "SELECT id, password, state FROM users WHERE user_name = %s"
         cursor.execute(query, (user_name,))
         result = cursor.fetchone()
         
         if result:
-            stored_password, state = result
+            id, stored_password, state = result
             if state == '2':
                 print(Fore.WHITE + Back.RED + "\nEl usuario está bloqueado. No se permite el inicio de sesión." + Style.RESET_ALL + "\n")
                 return False
@@ -78,6 +79,15 @@ def login_user(connection, user_name):
                 if verify_password(stored_password, password):
                     animate_login()  # Animación antes de mostrar el mensaje de éxito
                     print("\nInicio de sesión exitoso")
+                    
+                    # Guardar el ID del usuario en un archivo JSON
+                    try:
+                        with open('logged_in_user.json', 'w') as f:
+                            json.dump({'id': id}, f)
+                        print(Fore.GREEN + "ID del usuario guardado correctamente." + Style.RESET_ALL)
+                    except Exception as e:
+                        print(Fore.RED + f"Error al guardar el ID del usuario: {e}" + Style.RESET_ALL)
+                    
                     return True
                 else:
                     attempts += 1
