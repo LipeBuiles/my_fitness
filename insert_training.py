@@ -6,7 +6,7 @@ import time
     
 def animate_login():
     print("\n")
-    texto = "Insertando registro fitness"
+    texto = "Insertando registro de entrenamiento"
     iteraciones = 50
     delay = 0.05
     puntos = 0
@@ -19,18 +19,18 @@ def animate_login():
     
     print("\n")
 
-def insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update):
+def insert_training(id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG):
     try:
         conn = connect_to_database()
         cursor = conn.cursor()
-        query = """INSERT INTO health (date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
+        query = """INSERT INTO training (id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG)
                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-        values = (date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
+        values = (id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG)
         cursor.execute(query, values)
         conn.commit()
         insert_id = cursor.lastrowid
         animate_login()
-        print("\nRegistro fitness insertado con éxito")
+        print("\nRegistro de entrenamiento insertado con éxito")
         conn.close()
         return insert_id
 

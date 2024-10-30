@@ -77,10 +77,9 @@ def login_user(connection, user_name):
             while attempts < 3:
                 password = getpass.getpass("\nIngrese su contraseña: ")
                 if verify_password(stored_password, password):
-                    animate_login()  # Animación antes de mostrar el mensaje de éxito
+                    animate_login()
                     print("\nInicio de sesión exitoso")
                     
-                    # Guardar el ID del usuario en un archivo JSON
                     try:
                         with open('logged_in_user.json', 'w') as f:
                             json.dump({'id': id}, f)

@@ -6,6 +6,8 @@ import os
 import platform
 import sys
 import time
+from in_training import fetch_training
+from insert_training import insert_training
 
 def get_logged_in_user_id():
     try:
@@ -24,14 +26,14 @@ def clear_console():
         os.system("clear")
 
 def menu_fitness():
-    
+
     clear_console()
 
     while True:
 
         print("\nMenú de gestión de registros fitness, las opciones con las siguientes:\n")
         print("1. Ver los registros")
-        print("2. Crear resgistro")
+        print("2. Crear registros")
         print("3. Editar los registros")
         print("4. Eliminar los registros")
         print("5. Regresbreakar al menú principal")
@@ -77,10 +79,18 @@ def menu_fitness():
                               0. Sin entrenamiento
                               1. Con entrenamiento
                               """)
+
+                if in_training == '1':
+                    data_training = fetch_training(in_training)
+                
+
+
                 id_user_create = int(get_logged_in_user_id())
                 id_user_update = int(get_logged_in_user_id())
                 
-                insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
+                inserted_id = insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
+                
+                insert_training(inserted_id, *data_training)
              
 
             case '3':
