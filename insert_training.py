@@ -34,6 +34,21 @@ def animate_login_cadence():
     
     print("\n")
 
+def animate_login_heart_rate():
+    print("\n")
+    texto = "Insertando registro de ritmo cardiaco"
+    iteraciones = 50
+    delay = 0.05
+    puntos = 0
+
+    for _ in range(iteraciones):
+        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
+        sys.stdout.flush()
+        time.sleep(delay)
+        puntos += 1
+    
+    print("\n")
+
 def insert_training(id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG):
     try:
         conn = connect_to_database()
@@ -68,6 +83,23 @@ def insert_candence(id_training, cadence_AVG, cadence_max):
         conn.commit()
         animate_login_cadence()
         print("\nRegistro de cadencia insertado con éxito")
+        conn.close()
+    except Error as e:
+        print(f"\nError al insertar datos: {e}")
+    finally:
+        cursor.close()
+
+def insert_heart_rate(id_training, heart_rate_AVG, heart_rate_max, ligth_pace, intensive_pace, aerobic_pace, anaerobic_pace, vo2_max):
+    try:
+        conn = connect_to_database()
+        cursor = conn.cursor()
+        query = """INSERT INTO heart_rate (id_training, heart_rate_AVG, heart_rate_max, ligth_pace, intensive_pace, aerobic_pace, anaerobic_pace, vo2_max)
+                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+        values = (id_training, heart_rate_AVG, heart_rate_max, ligth_pace, intensive_pace, aerobic_pace, anaerobic_pace, vo2_max)
+        cursor.execute(query, values)
+        conn.commit()
+        animate_login_heart_rate()
+        print("\nRegistro de ritmo cardiaco insertado con éxito")
         conn.close()
     except Error as e:
         print(f"\nError al insertar datos: {e}")

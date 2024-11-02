@@ -94,3 +94,68 @@ def fetch_cadence():
             print("Entrada no válida. Por favor, ingrese un número entero positivo.")
 
     return cadence_AVG, cadence_max
+
+def fetch_heart_rate():
+    while True:
+        try:
+            heart_rate_AVG = int(input("Ingrese el ritmo cardiaco promedio: "))
+            if heart_rate_AVG < 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un número entero positivo.")
+    while True:
+        try:
+            heart_rate_max = int(input("Ingrese el ritmo cardiaco máximo: "))
+            if heart_rate_max < 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un número entero positivo.")
+    while True:
+        try:
+            ligth_pace = input("Ingrese su paso ligero (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, ligth_pace.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+    while True:
+        try:
+            intensive_pace = input("Ingrese su paso intenso (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, intensive_pace.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+    while True:
+        try:
+            aerobic_pace = input("Ingrese su paso aeróbico (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, aerobic_pace.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+                print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+    while True:
+        try:
+            anaerobic_pace = input("Ingrese su paso anaeróbico (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, anaerobic_pace.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+    while True:
+        try:
+            vo2_max = input("Ingrese su VO2 máx (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, vo2_max.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+
+    return heart_rate_AVG, heart_rate_max, ligth_pace, intensive_pace, aerobic_pace, anaerobic_pace, vo2_max
