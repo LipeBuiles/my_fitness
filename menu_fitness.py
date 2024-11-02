@@ -6,8 +6,8 @@ import os
 import platform
 import sys
 import time
-from in_training import fetch_training
-from insert_training import insert_training
+from in_training import fetch_training, fetch_cadence
+from insert_training import insert_training, insert_candence
 
 def get_logged_in_user_id():
     try:
@@ -79,19 +79,18 @@ def menu_fitness():
                               0. Sin entrenamiento
                               1. Con entrenamiento
                               """)
+                
+                id_user_create = int(get_logged_in_user_id())
+                id_user_update = int(get_logged_in_user_id())
+                inserted_id = insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
 
                 if in_training == '1':
                     data_training = fetch_training(in_training)
-                
+                    data_cadence = fetch_cadence()
 
-
-                id_user_create = int(get_logged_in_user_id())
-                id_user_update = int(get_logged_in_user_id())
+                    inserted_id_training = insert_training(inserted_id, *data_training)
+                    insert_candence(inserted_id_training, *data_cadence)
                 
-                inserted_id = insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
-                
-                insert_training(inserted_id, *data_training)
-             
 
             case '3':
                 break

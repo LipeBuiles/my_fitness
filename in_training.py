@@ -74,3 +74,23 @@ def fetch_training(in_training):
             print("Entrada no válida. Por favor, ingrese un número entero positivo.")
 
     return id_found, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG
+
+def fetch_cadence():
+    while True:
+        try:
+            cadence_AVG = int(input("Ingrese la cadencia promedio: "))
+            if cadence_AVG < 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un número entero positivo.")
+    while True:
+        try:
+            cadence_max = int(input("Ingrese la cadencia máxima: "))
+            if cadence_max < 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un número entero positivo.")
+
+    return cadence_AVG, cadence_max
