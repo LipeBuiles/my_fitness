@@ -181,3 +181,28 @@ def fetch_pace():
             print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
     
     return pace, pace_max
+
+def fetch_pace_for_km():
+    pace = []
+    while True:
+        try:
+            km = int(input("Ingrese la distancia en km recorrido: "))
+            if km <= 0:
+                raise ValueError("La distancia debe ser un número entero mayor que cero.")
+            break
+        except ValueError as e:
+            print(f"Entrada no válida, el numero debe ser mayor que cero: {e}")
+    
+    for i in range(1, km + 1):
+        while True:
+            try:
+                pace_km = input(f"Ingrese el ritmo para el km {i} (HH:mm:ss): ")
+                hours, minutes, seconds = map(int, pace_km.split(':'))
+                if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                    raise ValueError
+                pace.append(pace_km)
+                break
+            except ValueError:
+                print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+
+    return pace
