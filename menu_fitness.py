@@ -6,6 +6,8 @@ import os
 import platform
 import sys
 import time
+from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm
+from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm
 
 def get_logged_in_user_id():
     try:
@@ -24,14 +26,14 @@ def clear_console():
         os.system("clear")
 
 def menu_fitness():
-    
+
     clear_console()
 
     while True:
 
         print("\nMenú de gestión de registros fitness, las opciones con las siguientes:\n")
         print("1. Ver los registros")
-        print("2. Crear resgistro")
+        print("2. Crear registros")
         print("3. Editar los registros")
         print("4. Eliminar los registros")
         print("5. Regresbreakar al menú principal")
@@ -77,11 +79,25 @@ def menu_fitness():
                               0. Sin entrenamiento
                               1. Con entrenamiento
                               """)
+                
                 id_user_create = int(get_logged_in_user_id())
                 id_user_update = int(get_logged_in_user_id())
-                
-                insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
-             
+                inserted_id = insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
+
+                if in_training == '1':
+                    data_training = fetch_training(in_training)
+                    data_cadence = fetch_cadence()
+                    date_heart_rate = fetch_heart_rate()
+                    date_pace = fetch_pace()
+                    date_pace_for_km = fetch_pace_for_km()
+                    date_stride_cm = fetch_stride_cm()
+
+                    inserted_id_training = insert_training(inserted_id, *data_training)
+                    insert_candence(inserted_id_training, *data_cadence)
+                    insert_heart_rate(inserted_id_training, *date_heart_rate)
+                    insert_pace(inserted_id_training, *date_pace)
+                    insert_pace_for_km(inserted_id_training, *date_pace_for_km)
+                    insert_stride_cm(inserted_id_training, *date_stride_cm)
 
             case '3':
                 break

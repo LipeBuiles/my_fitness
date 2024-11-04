@@ -28,12 +28,15 @@ def insert_fitness(date, calories, steps, distance, moviment, in_training, id_us
         values = (date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
         cursor.execute(query, values)
         conn.commit()
+        insert_id = cursor.lastrowid
         animate_login()
         print("\nRegistro fitness insertado con éxito")
         conn.close()
+        return insert_id
 
     except Error as e:
         print(f"\nError al insertar datos: {e}")
+        return None
 
     finally:
         cursor.close()
