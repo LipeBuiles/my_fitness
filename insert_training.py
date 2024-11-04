@@ -79,6 +79,21 @@ def animate_login_pace_for_km():
     
     print("\n")
 
+def animate_stride_cm():
+    print("\n")
+    texto = "Insertando registro de zancada"
+    iteraciones = 50
+    delay = 0.05
+    puntos = 0
+
+    for _ in range(iteraciones):
+        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
+        sys.stdout.flush()
+        time.sleep(delay)
+        puntos += 1
+    
+    print("\n")
+
 def insert_training(id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG):
     try:
         conn = connect_to_database()
@@ -165,6 +180,23 @@ def insert_pace_for_km(id_training, *pace_for_km):
         conn.commit()
         animate_login_pace_for_km()
         print("\nRegistro de ritmo por km insertado con éxito")
+        conn.close()
+    except Error as e:
+        print(f"\nError al insertar datos: {e}")
+    finally:
+        cursor.close()
+
+def insert_stride_cm(id_training, stride_cm, stride_max):
+    try:
+        conn = connect_to_database()
+        cursor = conn.cursor()
+        query = """INSERT INTO stride_cm (id_training, stride_AVG, stride_max)
+                   VALUES (%s, %s, %s)"""
+        values = (id_training, stride_cm, stride_max)
+        cursor.execute(query, values)
+        conn.commit()
+        animate_stride_cm()
+        print("\nRegistro de zancada insertado con éxito")
         conn.close()
     except Error as e:
         print(f"\nError al insertar datos: {e}")

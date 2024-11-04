@@ -187,7 +187,7 @@ def fetch_pace_for_km():
     while True:
         try:
             km = int(input("Ingrese la distancia en km recorrido: "))
-            if km <= 0:
+            if km < 0:
                 raise ValueError("La distancia debe ser un número entero mayor que cero.")
             break
         except ValueError as e:
@@ -206,3 +206,23 @@ def fetch_pace_for_km():
                 print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
 
     return pace
+
+def fetch_stride_cm():
+    while True:
+        try:
+            stride_AVG = int(input("Ingrese la zancada promedio en cm: "))
+            if stride_AVG < 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un número entero positivo.")
+    while True:
+        try:
+            stride_max = int(input("Ingrese la zancada máxima en cm: "))
+            if stride_max < 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un número entero positivo.")
+
+    return stride_AVG, stride_max
