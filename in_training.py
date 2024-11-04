@@ -159,3 +159,25 @@ def fetch_heart_rate():
             print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
 
     return heart_rate_AVG, heart_rate_max, ligth_pace, intensive_pace, aerobic_pace, anaerobic_pace, vo2_max
+
+def fetch_pace():
+    while True:
+        try:
+            pace = input("Ingrese el ritmo (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, pace.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+    while True:
+        try:
+            pace_max = input("Ingrese el ritmo máximo (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, pace_max.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese el ritmo en formato HH:mm:ss.")
+    
+    return pace, pace_max

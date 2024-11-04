@@ -6,8 +6,8 @@ import os
 import platform
 import sys
 import time
-from in_training import fetch_training, fetch_cadence, fetch_heart_rate
-from insert_training import insert_training, insert_candence, insert_heart_rate
+from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace
+from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace
 
 def get_logged_in_user_id():
     try:
@@ -88,11 +88,12 @@ def menu_fitness():
                     data_training = fetch_training(in_training)
                     data_cadence = fetch_cadence()
                     date_heart_rate = fetch_heart_rate()
+                    date_pace = fetch_pace()
 
                     inserted_id_training = insert_training(inserted_id, *data_training)
                     insert_candence(inserted_id_training, *data_cadence)
                     insert_heart_rate(inserted_id_training, *date_heart_rate)
-                
+                    insert_pace(inserted_id_training, *date_pace)
 
             case '3':
                 break
