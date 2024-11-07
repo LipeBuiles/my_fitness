@@ -156,3 +156,6 @@ cython_debug/
 
 # Ignore dockerfile
 Dockerfile
+
+# Ignore json files session
+logged_in_user.json
