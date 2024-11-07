@@ -20,8 +20,8 @@ def menu_users():
 
     while True:
 
-        print("\nMenú de gestión de usuarios, las opciones con las siguientes:\n")
-        print("1. Ver los usarios")
+        print("\nMenú de gestión de usuarios, las opciones son las siguientes:\n")
+        print("1. Ver los usuarios")
         print("2. Crear los usuarios")
         print("3. Editar los usuarios")
         print("4. Eliminar los usuarios")
@@ -37,7 +37,7 @@ def menu_users():
 
             case '2':
                 name = input("\nIngrese el nombre completo del usuario: ")
-                user_name = input("Ingrese el nombre personalizado para iniciar sesón: ")
+                user_name = input("Ingrese el nombre personalizado para iniciar sesión: ")
                 email = input("Ingrese el correo electrónico: ")
                 password = input("Ingrese la contraseña: ")
                 state = input("""Ingrese el estado del usuario: \n

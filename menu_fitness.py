@@ -31,12 +31,12 @@ def menu_fitness():
 
     while True:
 
-        print("\nMenú de gestión de registros fitness, las opciones con las siguientes:\n")
+        print("\nMenú de gestión de registros fitness, las opciones son las siguientes:\n")
         print("1. Ver los registros")
         print("2. Crear registros")
         print("3. Editar los registros")
         print("4. Eliminar los registros")
-        print("5. Regresbreakar al menú principal")
+        print("5. Regresar al menú principal")
         print("6. Salir\n")
 
     
