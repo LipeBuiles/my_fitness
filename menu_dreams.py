@@ -38,7 +38,8 @@ def menu_dreams():
             case '4':
                 break
             case '5':
-                break
+                from menu import principal_menu
+                principal_menu()
             case '6':
                 break
 

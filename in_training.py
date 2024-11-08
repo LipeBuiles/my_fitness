@@ -226,3 +226,15 @@ def fetch_stride_cm():
             print("Entrada no válida. Por favor, ingrese un número entero positivo.")
 
     return stride_AVG, stride_max
+
+def fetch_type_training():
+    while True:
+        try:
+            name = input("Ingrese el nombre del tipo de entrenamiento: ")
+            if not name:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese un nombre.")
+
+    return name

@@ -1,13 +1,13 @@
 from datetime import datetime
+from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm, fetch_type_training
 from insert_fitness import insert_fitness
+from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm, insert_type_training
 from read_fitness import fetch_fitness_from_db
 import json
 import os
 import platform
 import sys
 import time
-from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm
-from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm
 
 def get_logged_in_user_id():
     try:
@@ -36,8 +36,9 @@ def menu_fitness():
         print("2. Crear registros")
         print("3. Editar los registros")
         print("4. Eliminar los registros")
-        print("5. Regresar al menú principal")
-        print("6. Salir\n")
+        print("5. Crear tipos de entrenamiento")
+        print("6. Regresar al menú principal")
+        print("7. Salir\n")
 
     
         option = input("Selecciona una opción: ")
@@ -105,9 +106,15 @@ def menu_fitness():
             case '4':
                 break
 
-            case '5':break
-   
+            case '5':
+                name_type_training = fetch_type_training()
+                insert_type_training(name_type_training)
+            
             case '6':
+                from menu import principal_menu
+                principal_menu()
+   
+            case '7':
                 print("Saliendo...")
                 time.sleep(3)
                 sys.exit()
