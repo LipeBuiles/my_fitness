@@ -20,8 +20,7 @@ def fetch_training(in_training):
     while True:
         try:
             km_distance = float(input("Ingrese la distancia en km: "))
-            if km_distance < 0 or len(str  
-(km_distance).split('.')[0]) > 5 or len(str(km_distance).split('.')[1]) > 2:
+            if km_distance < 0:
                 raise ValueError
             break
         except ValueError:
@@ -227,7 +226,7 @@ def fetch_stride_cm():
 
     return stride_AVG, stride_max
 
-def fetch_type_training():
+def fetch_type_training_add():
     while True:
         try:
             name = input("Ingrese el nombre del tipo de entrenamiento: ")

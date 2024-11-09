@@ -1,5 +1,5 @@
 from datetime import datetime
-from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm, fetch_type_training
+from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm, fetch_type_training_add
 from insert_fitness import insert_fitness
 from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm, insert_type_training
 from read_fitness import fetch_fitness_from_db
@@ -107,7 +107,7 @@ def menu_fitness():
                 break
 
             case '5':
-                name_type_training = fetch_type_training()
+                name_type_training = fetch_type_training_add()
                 insert_type_training(name_type_training)
             
             case '6':

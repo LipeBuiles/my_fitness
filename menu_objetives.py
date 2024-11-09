@@ -1,9 +1,9 @@
-import time
-import sys
 import platform
 import os
-from dreams import fetch_dream
-from insert_dream import insert_dream
+import time
+import sys
+from objetives import fetch_create_objtives
+from insert_objetive import insert_objetive
 
 def clear_console():
     current_os = platform.system()
@@ -12,19 +12,18 @@ def clear_console():
     else:
         os.system("clear")
 
-def menu_dreams():
+def menu_objetives():
     
     clear_console()
         
     while True:
 
         print("\nMenú de gestión de sueño, las opciones son las siguientes:\n")
-        print("1. Ver los sueños registrados")
-        print("2. Crear un registro de sueño")
-        print("3. Editar un registro de sueño")
-        print("4. Eliminar un registro de sueño")
-        print("5. Regresar al menú principal")
-        print("6. Salir\n")
+        print("1. Ver el detalle de mis objetivos")
+        print("2. Crear un nuevo objetivo")
+        print("2. Editar valores de mis objetivos")
+        print("3. Regresar al menú principal")
+        print("4. Salir\n")
 
     
         option = input("Selecciona una opción: ")
@@ -33,8 +32,8 @@ def menu_dreams():
             case '1':
                 break
             case '2':
-                dream = fetch_dream()
-                insert_dream(*dream)
+                data = fetch_create_objtives()
+                insert_objetive(*data)
             case '3':
                 break
             case '4':
@@ -51,4 +50,4 @@ def menu_dreams():
                 print("Opción no válida, por favor intente de nuevo.")
 
 if __name__ == "__main__":
-    menu_dreams()
+    menu_objetives()
