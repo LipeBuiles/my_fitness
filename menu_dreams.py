@@ -4,6 +4,7 @@ import platform
 import os
 from dreams import fetch_dream
 from insert_dream import insert_dream
+from read_dreams import fetch_dreams_from_db
 
 def clear_console():
     current_os = platform.system()
@@ -31,7 +32,7 @@ def menu_dreams():
         
         match option:
             case '1':
-                break
+                fetch_dreams_from_db()
             case '2':
                 dream = fetch_dream()
                 insert_dream(*dream)
