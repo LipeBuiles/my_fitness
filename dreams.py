@@ -22,6 +22,15 @@ def fetch_dream():
             print("Entrada no válida. Por favor, ingrese el tiempo en formato HH:mm:ss.")
     while True:
         try:
+            REM = input("Ingrese el tiempo de sueño REM (HH:mm:ss): ")
+            hours, minutes, seconds = map(int, REM.split(':'))
+            if hours < 0 or minutes < 0 or minutes >= 60 or seconds < 0 or seconds >= 60:
+                raise ValueError
+            break
+        except ValueError:
+            print("Entrada no válida. Por favor, ingrese el tiempo en formato HH:mm:ss.")
+    while True:
+        try:
             awake = int(input("Ingrese las veces que se desperto: "))
             if awake < 0:
                 raise ValueError
@@ -53,4 +62,4 @@ def fetch_dream():
         except ValueError:
             print("Entrada no válida. Por favor, ingrese un número entero.")
     
-    return ligth, deep, awake, heart_rate, total_dream, id_health
+    return ligth, deep, REM, awake, heart_rate, total_dream, id_health

@@ -19,13 +19,13 @@ def animate_dream():
     
     print("\n")
 
-def insert_dream(ligth, deep, awake, heart_rate, total_dream, id_health):
+def insert_dream(ligth, deep, REM, awake, heart_rate, total_dream, id_health):
     try:
         conn = connect_to_database()
         cursor = conn.cursor()
-        query = """INSERT INTO dream (ligth, deep, awake, heart_rate, total_dream, id_health)
-                   VALUES (%s, %s, %s, %s, %s, %s)"""
-        values = (ligth, deep, awake, heart_rate, total_dream, id_health)
+        query = """INSERT INTO dream (ligth, deep, REM, awake, heart_rate, total_dream, id_health)
+                   VALUES (%s, %s, %s, %s, %s, %s, %s)"""
+        values = (ligth, deep, REM, awake, heart_rate, total_dream, id_health)
         cursor.execute(query, values)
         conn.commit()
         animate_dream()
