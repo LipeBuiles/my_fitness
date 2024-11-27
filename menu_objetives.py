@@ -4,6 +4,7 @@ import time
 import sys
 from objetives import fetch_create_objtives
 from insert_objetive import insert_objetive
+from read_objetive_day import fetch_objetive_day_from_db
 
 def clear_console():
     current_os = platform.system()
@@ -21,16 +22,16 @@ def menu_objetives():
         print("\nMenú de gestión de sueño, las opciones son las siguientes:\n")
         print("1. Ver el detalle de mis objetivos")
         print("2. Crear un nuevo objetivo")
-        print("2. Editar valores de mis objetivos")
-        print("3. Regresar al menú principal")
-        print("4. Salir\n")
+        print("3. Editar valores de mis objetivos")
+        print("4. Regresar al menú principal")
+        print("5. Salir\n")
 
     
         option = input("Selecciona una opción: ")
         
         match option:
             case '1':
-                break
+                fetch_objetive_day_from_db()
             case '2':
                 data = fetch_create_objtives()
                 insert_objetive(*data)
