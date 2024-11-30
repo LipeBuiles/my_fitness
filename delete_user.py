@@ -26,7 +26,7 @@ def delete_user(id_user):
     try:
         conn = connect_to_database()
         cursor = conn.cursor()
-        query = "DELETE FROM users WHERE id = %s"
+        query = "UPDATE users set state = '3' WHERE id = %s"
         cursor.execute(query, (id_user,))
         conn.commit()
         animate_login()

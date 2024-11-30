@@ -29,6 +29,7 @@ def hash_password(password):
 
 def list_users():
     list_users = read_users()[0]
+    list_users = list_users.drop(columns=['Contraseña'])
     df_str = tabulate(list_users, headers='keys', tablefmt='fancy_grid', showindex=False)
     return df_str
 
@@ -56,9 +57,10 @@ def get_user(id_user):
                 new_email = email
 
             new_password = input("Ingrese la contraseña: ")
-            new_password = hash_password(new_password)
             if new_password == "":
                 new_password = password
+            else:
+                new_password = hash_password(new_password)
 
             new_state = input("""Ingrese el estado del usuario: \n
                                 0. Inactivo
