@@ -29,27 +29,7 @@ CREATE TABLE `audith_objetives_day` (
   `old_date` date DEFAULT NULL,
   `new_date` date DEFAULT NULL,
   `old_obj_calories` int DEFAULT NULL,
-  `new_obj_calories` int DEFAU#!/bin/bash
-
-# Variables (considera usar variables de entorno para contraseñas sensibles)
-CONTAINER_NAME="mySQL"
-DB_NAME="my_fitness"
-DB_USER="root"
-DB_PASS="python.1988***"
-BACKUP_PATH="/home/lipe/projects/my_fitness/querys"
-BACKUP_FILE="backup_${DB_NAME}.sql"
-
-# Crear respaldo dentro del contenedor y almacenarlo en un directorio temporal
-docker exec $CONTAINER_NAME bash -c "mysqldump -u $DB_USER -p$DB_PASS $DB_NAME > /tmp/$BACKUP_FILE"
-
-# Copiar respaldo desde el contenedor al host
-docker cp $CONTAINER_NAME:/tmp/$BACKUP_FILE $BACKUP_PATH/$BACKUP_FILE
-
-# Limpiar archivo temporal en el contenedor
-docker exec $CONTAINER_NAME rm /tmp/$BACKUP_FILE
-
-echo "Respaldo completado: $BACKUP_PATH/$BACKUP_FILE"
-LT NULL,
+  `new_obj_calories` int DEFAULT NULL,
   `old_obj_steps` int DEFAULT NULL,
   `new_obj_steps` int DEFAULT NULL,
   `old_obj_moviment` int DEFAULT NULL,
@@ -68,7 +48,7 @@ LT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_objetives_day` (`id_objetives_day`),
   CONSTRAINT `audith_objetives_day_fk_1` FOREIGN KEY (`id_objetives_day`) REFERENCES `objetives_day` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +57,7 @@ LT NULL,
 
 LOCK TABLES `audith_objetives_day` WRITE;
 /*!40000 ALTER TABLE `audith_objetives_day` DISABLE KEYS */;
-INSERT INTO `audith_objetives_day` VALUES (1,'INSERT',1,NULL,'2024-11-26',NULL,2000,NULL,10000,NULL,150,NULL,7.50,NULL,1,NULL,'2024-11-27 02:16:11',NULL,NULL,NULL,'2024-11-27 02:16:11','2024-11-27 02:16:11'),(2,'UPDATE',1,'2024-11-26','2024-11-26',2000,2200,10000,12000,150,150,7.50,7.50,1,1,'2024-11-27 02:16:11','2024-11-27 02:16:11',NULL,NULL,'2024-11-27 02:16:11','2024-11-27 02:17:05','2024-11-27 02:17:05');
+INSERT INTO `audith_objetives_day` VALUES (1,'INSERT',1,NULL,'2024-11-26',NULL,2000,NULL,10000,NULL,150,NULL,7.50,NULL,1,NULL,'2024-11-27 02:16:11',NULL,NULL,NULL,'2024-11-27 02:16:11','2024-11-27 02:16:11'),(2,'UPDATE',1,'2024-11-26','2024-11-26',2000,2200,10000,12000,150,150,7.50,7.50,1,1,'2024-11-27 02:16:11','2024-11-27 02:16:11',NULL,NULL,'2024-11-27 02:16:11','2024-11-27 02:17:05','2024-11-27 02:17:05'),(3,'INSERT',2,NULL,'2024-12-26',NULL,500,NULL,5000,NULL,30,NULL,7.00,NULL,2,NULL,'2024-11-27 02:58:42',NULL,2,NULL,'2024-11-27 02:58:42','2024-11-27 02:58:42');
 /*!40000 ALTER TABLE `audith_objetives_day` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +225,7 @@ CREATE TABLE `objetives_day` (
   CONSTRAINT `objetives_day_chk_2` CHECK ((`obj_steps` <= 100000)),
   CONSTRAINT `objetives_day_chk_3` CHECK ((`obj_moviment` <= 300)),
   CONSTRAINT `objetives_day_chk_4` CHECK ((`obj_dream` <= 24.00))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +234,7 @@ CREATE TABLE `objetives_day` (
 
 LOCK TABLES `objetives_day` WRITE;
 /*!40000 ALTER TABLE `objetives_day` DISABLE KEYS */;
-INSERT INTO `objetives_day` VALUES (1,'2024-11-26',2200,12000,150,7.50,1,'2024-11-27 02:16:11',NULL,'2024-11-27 02:17:05');
+INSERT INTO `objetives_day` VALUES (1,'2024-11-26',2200,12000,150,7.50,1,'2024-11-27 02:16:11',NULL,'2024-11-27 02:17:05'),(2,'2024-12-26',500,5000,30,7.00,2,'2024-11-27 02:58:42',2,'2024-11-27 02:58:42');
 /*!40000 ALTER TABLE `objetives_day` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -498,9 +478,9 @@ CREATE TABLE `users` (
   `user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
-  `state` enum('0','1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `state` enum('0','1','2','3') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `chk_state` CHECK ((`state` in (_utf8mb4'0',_utf8mb4'1',_utf8mb4'2')))
+  CONSTRAINT `chk_state` CHECK ((`state` in (_utf8mb4'0',_utf8mb4'1',_utf8mb4'2',_utf8mb4'3')))
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -510,7 +490,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Juan Felipe Builes','Builes','juan_builes@hotmail.com','$2a$12$n.3M/nuf82ClpN80YqYgTOBNU7lwBRDmIBWNIeOn9bpq1As.o5NGG','1'),(2,'Admin','Admin','juan_builes@hotmail.com','$2a$12$n.3M/nuf82ClpN80YqYgTOBNU7lwBRDmIBWNIeOn9bpq1As.o5NGG','1');
+INSERT INTO `users` VALUES (1,'Juan Felipe Builes','Builes','juan_builes@hotmail.com','$2a$12$n.3M/nuf82ClpN80YqYgTOBNU7lwBRDmIBWNIeOn9bpq1As.o5NGG','1'),(2,'Admin','Admin','juan_builes@hotmail.com','$2b$12$O49PN6.ZKA1GoatHxy.s2OGz4kpCHn2IcvtWwDgpuljY0A8NiDicS','3');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -523,4 +503,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-27  2:52:04
+-- Dump completed on 2024-11-30  4:56:52

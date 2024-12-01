@@ -59,7 +59,7 @@ def animate_login():
 def login_user(connection, user_name):
     try:
         cursor = connection.cursor()
-        query = "SELECT id, password, state FROM users WHERE user_name = %s"
+        query = "SELECT id, password, state FROM users WHERE BINARY user_name = %s"
         cursor.execute(query, (user_name,))
         result = cursor.fetchone()
         
@@ -71,6 +71,10 @@ def login_user(connection, user_name):
 
             if state == '0':
                 print("\nEl usuario está inactivo y no puede iniciar sesión.")
+                return False
+            
+            if state == '3':
+                print("\nUsuario no encontrado.")
                 return False
 
             attempts = 0
