@@ -52,7 +52,7 @@ def menu_users():
                 print(list_users())
                 id_user = int(input("\nIngrese el id del usuario a editar: "))
                 user = get_user(id_user)
-                if user[0] is not None:
+                if user is not None:
                     update_user(*user)
             case '4':
                 print(list_users())

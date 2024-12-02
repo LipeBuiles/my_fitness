@@ -2,9 +2,11 @@ import time
 import sys
 import platform
 import os
-from dreams import fetch_dream
+from dreams import read_data_dream
 from insert_dream import insert_dream
-from read_dreams import fetch_dreams_from_db
+from read_dreams import fetch_dreams_from_db, fetch_dreams_id
+from update_dream import get_dream, update_dream
+
 
 def clear_console():
     current_os = platform.system()
@@ -34,10 +36,14 @@ def menu_dreams():
             case '1':
                 fetch_dreams_from_db()
             case '2':
-                dream = fetch_dream()
+                dream = read_data_dream()
                 insert_dream(*dream)
             case '3':
-                break
+                fetch_dreams_id()
+                id_dream = int(input("\nIngrese el id del sueño a editar: "))
+                dream = get_dream(id_dream)
+                if dream is not None:
+                    update_dream(*dream)
             case '4':
                 break
             case '5':

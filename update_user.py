@@ -48,7 +48,7 @@ def get_user(id_user):
             if new_name == "":
                 new_name = name
 
-            new_user_name = input("Ingrese el nombre personalizado para iniciar sesón: ")
+            new_user_name = input("Ingrese el nombre personalizado para iniciar sesión: ")
             if new_user_name == "":
                 new_user_name = user_name
 
@@ -72,7 +72,7 @@ def get_user(id_user):
             return id_user, new_name, new_user_name, new_email, new_password, new_state
 
     print("\nEl usuario no existe")
-    return None, None, None, None, None, None
+    return None
 
 def update_user(id_user, new_name, new_user_name, new_email, new_password, new_state):
     try:

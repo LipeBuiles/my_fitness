@@ -1,6 +1,6 @@
 from read_health import fetch_health
 
-def fetch_dream():
+def read_data_dream():
     while True:
         try:
             ligth = input("Ingrese el tiempo de sueño ligero (HH:mm:ss): ")
