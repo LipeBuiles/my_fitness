@@ -63,6 +63,10 @@ def menu_users():
                 principal_menu()
             case '6':
                 print("Saliendo...")
+                try:
+                    os.remove("logged_in_user.json")
+                except FileNotFoundError:
+                    print("El archivo logged_in_user.json no existe.")
                 time.sleep(3)
                 sys.exit()
 

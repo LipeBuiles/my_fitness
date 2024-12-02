@@ -43,6 +43,8 @@ def menu_objetives():
                 from menu import principal_menu
                 principal_menu()
             case '6':
+                if os.path.exists("logged_in_user.json"):
+                    os.remove("logged_in_user.json")
                 print("\nSaliendo...")
                 time.sleep(3)
                 sys.exit()

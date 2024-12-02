@@ -45,6 +45,8 @@ def menu_dreams():
                 principal_menu()
             case '6':
                 print("\nSaliendo...")
+                if os.path.exists("logged_in_user.json"):
+                    os.remove("logged_in_user.json")
                 time.sleep(3)
                 sys.exit()
 

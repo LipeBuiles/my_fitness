@@ -40,6 +40,8 @@ def principal_menu():
 
             case '5':
                 print("\nSaliendo...")
+                if os.path.exists("logged_in_user.json"):
+                    os.remove("logged_in_user.json")
                 time.sleep(3)
                 sys.exit()
             case _:

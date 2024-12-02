@@ -116,6 +116,8 @@ def menu_fitness():
    
             case '7':
                 print("Saliendo...")
+                if os.path.exists('logged_in_user.json'):
+                    os.remove('logged_in_user.json')
                 time.sleep(3)
                 sys.exit()
 
