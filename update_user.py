@@ -69,16 +69,17 @@ def get_user(id_user):
                                 """)
             if new_state == "":
                 new_state = state
-            break
+            return id_user, new_name, new_user_name, new_email, new_password, new_state
 
-    return id_user, new_name, new_user_name, new_email, new_password, new_state
+    print("\nEl usuario no existe")
+    return None, None, None, None, None, None
 
 def update_user(id_user, new_name, new_user_name, new_email, new_password, new_state):
     try:
         conn = connect_to_database()
         cursor = conn.cursor()
 
-        query = "update users set name = %s, user_name = %s, email = %s, password = %s, state = %s where id = %s"
+        query = "update users set name = %s, user_name = %s, email = %s, password = %s, state = %s where id = %s and state != '3'"
         values = (new_name, new_user_name, new_email, new_password, new_state, id_user)
         cursor.execute(query, values)
         conn.commit()

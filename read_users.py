@@ -6,7 +6,7 @@ def fetch_users_from_db():
     conn = connect_to_database()
     cursor = conn.cursor()
 
-    query = "SELECT name, user_name, email, state FROM users ORDER BY id DESC"
+    query = "SELECT name, user_name, email, state FROM users WHERE state != '3' ORDER BY id DESC"
     cursor.execute(query)
 
     columns = ["Nombre", "Usuario", "Correo Electronico", "Estado"]
@@ -24,7 +24,7 @@ def read_users():
     conn = connect_to_database()
     cursor = conn.cursor()
 
-    query = "SELECT* FROM users ORDER BY id DESC"
+    query = "SELECT* FROM users WHERE state != '3' ORDER BY id DESC"
     cursor.execute(query)
 
     data = cursor.fetchall()
