@@ -6,10 +6,10 @@ def fetch_dreams_from_db():
     conn = connect_to_database()
     cursor = conn.cursor()
 
-    query = "SELECT ligth, deep, REM, awake, heart_rate, total_dream FROM dream ORDER BY id DESC"
+    query = "SELECT h.date as date, d.ligth, d.deep, d.REM, d.awake, d.heart_rate, d.total_dream FROM dream d INNER JOIN health h ON d.id_health = h.id ORDER BY date desc"
     cursor.execute(query)
 
-    columns = ["Ligero", "Profundo", "REM", "Despierto", "Ritmo Cardiaco", "Total Sueño"]
+    columns = ["Fecha", "Ligero", "Profundo", "REM", "Despierto", "Ritmo Cardiaco", "Total Sueño"]
 
     data = cursor.fetchall()
     df = pd.DataFrame(data, columns=columns)
