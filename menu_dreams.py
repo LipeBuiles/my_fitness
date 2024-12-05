@@ -6,6 +6,7 @@ from dreams import read_data_dream
 from insert_dream import insert_dream
 from read_dreams import fetch_dreams_from_db, fetch_dreams_id
 from update_dream import get_dream, update_dream
+from delete_dream import delete_dream, id_is_valid
 
 
 def clear_console():
@@ -45,7 +46,10 @@ def menu_dreams():
                 if dream is not None:
                     update_dream(*dream)
             case '4':
-                break
+                fetch_dreams_id()
+                id_dream = int(input("\nIngrese el id del sueño a eliminar: "))
+                if id_is_valid(id_dream) is not None:
+                    delete_dream(id_dream)
             case '5':
                 from menu import principal_menu
                 principal_menu()

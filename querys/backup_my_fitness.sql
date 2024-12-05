@@ -111,7 +111,7 @@ CREATE TABLE `dream` (
   CONSTRAINT `dream_health_id_fk` FOREIGN KEY (`id_health`) REFERENCES `health` (`id`),
   CONSTRAINT `dream_chk_1` CHECK ((`awake` <= 24)),
   CONSTRAINT `dream_chk_2` CHECK ((`heart_rate` <= 300))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `dream` (
 
 LOCK TABLES `dream` WRITE;
 /*!40000 ALTER TABLE `dream` DISABLE KEYS */;
-INSERT INTO `dream` VALUES (1,'03:39:00','05:45:00','01:56:00',2,61,'11:20:00',1),(2,'01:59:00','01:25:00','01:08:00',0,60,'04:32:00',3);
+INSERT INTO `dream` VALUES (1,'05:45:00','03:39:00','01:56:00',2,61,'11:20:00',1),(2,'01:59:00','01:25:00','01:08:00',0,60,'04:32:00',3),(3,'03:06:00','01:58:00','01:08:00',0,61,'06:12:00',4),(4,'02:30:00','01:59:00','01:40:00',1,61,'06:09:00',5),(5,'00:00:00','00:00:00','00:00:00',0,0,'00:00:00',6),(6,'03:19:00','02:22:00','01:43:00',2,63,'07:24:00',7),(7,'00:00:00','00:00:00','00:00:00',0,0,'00:00:00',8),(8,'00:00:00','00:00:00','00:00:00',0,0,'00:00:00',2),(9,'03:09:00','01:50:00','01:51:00',1,62,'06:50:00',9),(10,'00:00:00','00:00:00','00:00:00',0,0,'02:17:00',10),(11,'03:37:00','02:12:00','00:00:51',1,61,'06:41:00',11);
 /*!40000 ALTER TABLE `dream` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,7 @@ CREATE TABLE `health` (
   CONSTRAINT `health_chk_2` CHECK ((`steps` <= 100000)),
   CONSTRAINT `health_chk_3` CHECK ((`distance` <= 999.99)),
   CONSTRAINT `health_chk_4` CHECK ((`moviment` <= 300))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `health` (
 
 LOCK TABLES `health` WRITE;
 /*!40000 ALTER TABLE `health` DISABLE KEYS */;
-INSERT INTO `health` VALUES (1,'2024-11-23',759,6835,4.47,57,'0',1,'2024-11-24 05:39:48',1,'2024-11-24 05:39:48'),(2,'2024-11-24',1024,6083,3.99,36,'0',2,'2024-11-25 05:52:13',2,'2024-11-25 05:52:13'),(3,'2024-11-25',1499,12814,8.39,94,'0',1,'2024-11-26 03:56:41',1,'2024-11-26 03:56:41');
+INSERT INTO `health` VALUES (1,'2024-11-23',759,6835,4.47,57,'0',1,'2024-11-24 05:39:48',1,'2024-11-24 05:39:48'),(2,'2024-11-24',1024,6083,3.99,36,'0',2,'2024-11-25 05:52:13',2,'2024-11-25 05:52:13'),(3,'2024-11-25',1499,12814,8.39,94,'0',1,'2024-11-26 03:56:41',1,'2024-11-26 03:56:41'),(4,'2024-11-26',1333,4399,2.88,23,'0',1,'2024-12-02 03:13:39',1,'2024-12-02 03:13:39'),(5,'2024-11-27',1321,8985,5.89,61,'0',1,'2024-12-02 03:14:44',1,'2024-12-05 03:25:38'),(6,'2024-11-28',1266,4198,2.75,8,'0',1,'2024-12-02 03:16:32',1,'2024-12-02 03:16:32'),(7,'2024-11-29',507,2321,1.51,8,'0',1,'2024-12-02 03:18:20',1,'2024-12-02 03:18:20'),(8,'2024-11-30',914,9969,6.53,62,'0',1,'2024-12-02 03:18:58',1,'2024-12-02 03:18:58'),(9,'2024-12-01',587,884,0.58,3,'0',1,'2024-12-05 03:06:35',1,'2024-12-05 03:06:35'),(10,'2024-12-02',1557,14294,9.36,95,'0',1,'2024-12-05 03:07:26',1,'2024-12-05 03:07:26'),(11,'2024-12-03',1363,9250,6.06,57,'0',1,'2024-12-05 03:08:17',1,'2024-12-05 03:08:17');
 /*!40000 ALTER TABLE `health` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,7 +481,7 @@ CREATE TABLE `users` (
   `state` enum('0','1','2','3') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `chk_state` CHECK ((`state` in (_utf8mb4'0',_utf8mb4'1',_utf8mb4'2',_utf8mb4'3')))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -490,7 +490,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Juan Felipe Builes','Builes','juan_builes@hotmail.com','$2a$12$n.3M/nuf82ClpN80YqYgTOBNU7lwBRDmIBWNIeOn9bpq1As.o5NGG','1'),(2,'Admin','Admin','juan_builes@hotmail.com','$2b$12$O49PN6.ZKA1GoatHxy.s2OGz4kpCHn2IcvtWwDgpuljY0A8NiDicS','3');
+INSERT INTO `users` VALUES (1,'Juan Builes','Builes','juan_builes@hotmail.com','$2a$12$n.3M/nuf82ClpN80YqYgTOBNU7lwBRDmIBWNIeOn9bpq1As.o5NGG','1'),(2,'admin','Admin','juan_builes@hotmail.com','$2b$12$O49PN6.ZKA1GoatHxy.s2OGz4kpCHn2IcvtWwDgpuljY0A8NiDicS','1'),(3,'Jaun','buileS','elpinchepastel@gmail.com','$2b$12$0mUXnkvhXBY..yvZ11G83OfWQ8Mlv8uLXcGmJADvl8x8KhO4YzaBG','3');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -503,4 +503,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-30  4:56:52
+-- Dump completed on 2024-12-05  3:35:12
