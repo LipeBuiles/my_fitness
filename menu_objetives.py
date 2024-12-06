@@ -5,6 +5,7 @@ import sys
 from objetives import fetch_create_objtives
 from insert_objetive import insert_objetive
 from read_objetive_day import fetch_objetive_day_from_db
+from update_objetive import fetch_update_objetive, update_objetive
 
 def clear_console():
     current_os = platform.system()
@@ -36,13 +37,14 @@ def menu_objetives():
                 data = fetch_create_objtives()
                 insert_objetive(*data)
             case '3':
-                break
+                print("Los datos del objetivo actual son los siguientes:\n")
+                fetch_objetive_day_from_db()
+                data = fetch_update_objetive()
+                update_objetive(*data)
             case '4':
-                break
-            case '5':
                 from menu import principal_menu
                 principal_menu()
-            case '6':
+            case '5':
                 if os.path.exists("logged_in_user.json"):
                     os.remove("logged_in_user.json")
                 print("\nSaliendo...")
