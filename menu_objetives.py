@@ -37,8 +37,9 @@ def menu_objetives():
                 data = fetch_create_objtives()
                 insert_objetive(*data)
             case '3':
-                print("Los datos del objetivo actual son los siguientes:\n")
+                print("\nLos datos del objetivo actual son los siguientes:")
                 fetch_objetive_day_from_db()
+                print("\n")
                 data = fetch_update_objetive()
                 update_objetive(*data)
             case '4':
