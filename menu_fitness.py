@@ -3,6 +3,8 @@ from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_p
 from insert_fitness import insert_fitness
 from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm, insert_type_training
 from read_fitness import fetch_fitness_from_db
+from delete_health import search_id_train, delete_all_data_trainig, delete_dream, delete_health
+from read_health import fetch_health
 import json
 import os
 import platform
@@ -104,7 +106,16 @@ def menu_fitness():
                 break
 
             case '4':
-                break
+                fetch_health()
+                id_health = int(input("Ingrese el id del registro a editar: "))
+                id_training = search_id_train(id_health)
+                if id_training is not None:
+                    delete_dream(id_health)
+                    delete_all_data_trainig(id_training, id_health)
+                    delete_health(id_health)
+                else:
+                    delete_dream(id_health)
+                    delete_health(id_health)
 
             case '5':
                 name_type_training = fetch_type_training_add()
