@@ -186,40 +186,53 @@ def update_fitness(id_health):
     if new_stride_max == "":
         new_stride_max = stride_max
 
-    # # query = "SELECT * FROM pace_for_km WHERE id_training = %s"
-    # # values = (id_training,)
-    # # cursor.execute(query, values)
-    # # data = cursor.fetchall()
+    query = "SELECT * FROM pace_for_km WHERE id_training = %s"
+    values = (id_training,)
+    cursor.execute(query, values)
+    data_km = cursor.fetchall()
 
-    # query = "UPDATE health SET date = %s, calories = %s, steps = %s, distance = %s, moviment = %s, in_training = %s, id_user_update = %s, update_date = %s WHERE id = %s"
-    # values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
-    # cursor.execute(query, values)
-    # conn.commit()
+    query = "UPDATE health SET date = %s, calories = %s, steps = %s, distance = %s, moviment = %s, in_training = %s, id_user_update = %s, update_date = %s WHERE id = %s"
+    values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
+    cursor.execute(query, values)
+    conn.commit()
 
-    # query = "UPDATE training SET id_type_training = %s, km_distance = %s, kcal_active = %s, kcal_total = %s, pace = %s, steps = %s, heart_rate_AVG = %s WHERE id_health = %s"
-    # values = (new_id_type_training, new_km_distance, new_kcal_active, new_kcal_total, new_pace, new_steps, new_heart_rate_AVG, id_health)
-    # cursor.execute(query, values)
-    # conn.commit()
+    query = "UPDATE training SET id_type_training = %s, km_distance = %s, kcal_active = %s, kcal_total = %s, pace = %s, steps = %s, heart_rate_AVG = %s WHERE id_health = %s"
+    values = (new_id_type_training, new_km_distance, new_kcal_active, new_kcal_total, new_pace, new_steps, new_heart_rate_AVG, id_health)
+    cursor.execute(query, values)
+    conn.commit()
 
-    # query = "UPDATE cadence SET cadence_AVG = %s, cadence_max = %s WHERE id_training = %s"
-    # values = (new_cadence_AVG, new_cadence_max, id_training)
-    # cursor.execute(query, values)
-    # conn.commit()
+    query = "UPDATE cadence SET cadence_AVG = %s, cadence_max = %s WHERE id_training = %s"
+    values = (new_cadence_AVG, new_cadence_max, id_training)
+    cursor.execute(query, values)
+    conn.commit()
 
-    # query = "UPDATE heart_rate SET heart_rate_AVG = %s, heart_rate_max = %s, ligth_pace = %s, intensive_pace = %s, aerobic_pace = %s, anaerobic_pace = %s, vo2_max = %s WHERE id_training = %s"
-    # values = (new_heart_rate_AVG, new_heart_rate_max, new_ligth_pace, new_intensive_pace, new_aerobic_pace, new_anaerobic_pace, new_vo2_max, id_training)
-    # cursor.execute(query, values)
-    # conn.commit()
+    query = "UPDATE heart_rate SET heart_rate_AVG = %s, heart_rate_max = %s, ligth_pace = %s, intensive_pace = %s, aerobic_pace = %s, anaerobic_pace = %s, vo2_max = %s WHERE id_training = %s"
+    values = (new_heart_rate_AVG, new_heart_rate_max, new_ligth_pace, new_intensive_pace, new_aerobic_pace, new_anaerobic_pace, new_vo2_max, id_training)
+    cursor.execute(query, values)
+    conn.commit()
 
-    # query = "UPDATE pace SET pace = %s, pace_max = %s WHERE id_training = %s"
-    # values = (new_pace, new_pace_max, id_training)
-    # cursor.execute(query, values)
-    # conn.commit()
+    query = "UPDATE pace SET pace = %s, pace_max = %s WHERE id_training = %s"
+    values = (new_pace, new_pace_max, id_training)
+    cursor.execute(query, values)
+    conn.commit()
 
-    # query = "UPDATE stride_cm SET stride_AVG = %s, stride_max = %s WHERE id_training = %s"
-    # values = (new_stride_AVG, new_stride_max, id_training)
-    # cursor.execute(query, values)
-    # conn.commit()
+    query = "UPDATE stride_cm SET stride_AVG = %s, stride_max = %s WHERE id_training = %s"
+    values = (new_stride_AVG, new_stride_max, id_training)
+    cursor.execute(query, values)
+    conn.commit()
+
+    for i in data_km:
+            km = i[2]
+            pace = i[3]
+
+            new_pace = input(f"\nEl ritmo en el kilometro {km} fue {pace}. Ingrese el nuevo ritmo(HH:mm:ss) o enter para conservar el actual: ")
+            if new_pace == "":
+                new_pace = pace
+
+            query = "UPDATE pace_for_km SET pace = %s WHERE id_training = %s AND km = %s"
+            values = (new_pace, id_training, km)
+            cursor.execute(query, values)
+            conn.commit()
 
     conn.close()
     
