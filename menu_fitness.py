@@ -5,6 +5,7 @@ from insert_training import insert_training, insert_candence, insert_heart_rate,
 from read_fitness import fetch_fitness_from_db
 from delete_health import search_id_train, delete_all_data_trainig, delete_dream, delete_health
 from read_health import fetch_health
+from update_fitness import update_fitness
 import json
 import os
 import platform
@@ -103,7 +104,8 @@ def menu_fitness():
                     insert_stride_cm(inserted_id_training, *date_stride_cm)
 
             case '3':
-                break
+                id_health = int(input("Ingrese el id del registro de fitness a editar: "))
+                update_fitness(id_health)
 
             case '4':
                 fetch_health()
