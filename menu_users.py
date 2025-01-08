@@ -38,13 +38,30 @@ def menu_users():
             case '2':
                 name = input("\nIngrese el nombre completo del usuario: ")
                 user_name = input("Ingrese el nombre personalizado para iniciar sesión: ")
-                email = input("Ingrese el correo electrónico: ")
+                while True:
+                    try:
+                        email = input("Ingrese el correo electrónico: ")
+                        if "@" not in email or "." not in email:
+                            raise ValueError("Correo electrónico no válido")
+                        break
+                    except ValueError as e:
+                        print(e)
+                        continue
+                
                 password = input("Ingrese la contraseña: ")
-                state = input("""Ingrese el estado del usuario: \n
-                              0. Inactivo
-                              1. Activo
-                              2. Bloqueado
-                              """)
+                while True:
+                    try:
+                        state = int(input("""Ingrese el estado del usuario: \n
+                                          0. Inactivo
+                                          1. Activo
+                                          2. Bloqueado
+                                          """))
+                        if state not in [0, 1, 2]:
+                            raise ValueError("Estado no válido")
+                        break
+                    except ValueError as e:
+                        print(e)
+                        continue
                 
                 insert_user(name, user_name, email, password, state)
                 

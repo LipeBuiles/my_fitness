@@ -12,6 +12,15 @@ def fetch_users_from_db():
     columns = ["Nombre", "Usuario", "Correo Electronico", "Estado"]
 
     data = cursor.fetchall()
+    for i, row in enumerate(data):
+        state = row[3]
+        if state == '0':
+            state = 'Inactivo'
+        elif state == '1':
+            state = 'Activo'
+        elif state == '2':
+            state = 'Bloqueado'
+        data[i] = row[:3] + (state,)
     df = pd.DataFrame(data, columns=columns)
     df = tabulate(df, headers='keys', tablefmt='fancy_grid', showindex=False)
     
