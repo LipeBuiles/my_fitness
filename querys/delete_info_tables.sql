@@ -1,0 +1,13 @@
+SET FOREIGN_KEY_CHECKS = 0;
+truncate table audith_objetives_day;
+truncate table cadence;
+truncate table dream;
+truncate table heart_rate;
+truncate table pace;
+truncate table pace_for_km;
+truncate table stride_cm;
+truncate table type_training;
+truncate table training;
+truncate table health;
+truncate table objetives_day;
+SET FOREIGN_KEY_CHECKS = 1;

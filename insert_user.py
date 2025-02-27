@@ -4,21 +4,8 @@ import bcrypt
 from mysql.connector import Error
 from conection import connect_to_database
 from colorama import Fore, Style
-    
-def animate_login():
-    print("\n")
-    texto = "Insertando usuario "
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
+from loader import DataLoader
+from clear import clear_console
 
 def hash_password(password):
     salt = bcrypt.gensalt()
@@ -35,9 +22,11 @@ def insert_user(name, user_name, email, password, state):
         values = (name, user_name, email, hashed_password, state)
         cursor.execute(query, values)
         conn.commit()
-        animate_login()
-        print("\nUsuario insertado con éxito")
+        loader = DataLoader(user_name)
+        print(loader.load_create_user())
+        time.sleep(2)
         conn.close()
+        clear_console()
 
     except Error as e:
         print(f"\nError al insertar datos: {e}")

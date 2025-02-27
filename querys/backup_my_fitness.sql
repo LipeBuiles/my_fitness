@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `audith_objetives_day`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `audith_objetives_day` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `action` enum('INSERT','UPDATE') COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `action` enum('INSERT','UPDATE') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `id_objetives_day` int NOT NULL,
   `old_date` date DEFAULT NULL,
   `new_date` date DEFAULT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `audith_objetives_day` (
   PRIMARY KEY (`id`),
   KEY `fk_id_objetives_day` (`id_objetives_day`),
   CONSTRAINT `audith_objetives_day_fk_1` FOREIGN KEY (`id_objetives_day`) REFERENCES `objetives_day` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,6 @@ CREATE TABLE `audith_objetives_day` (
 
 LOCK TABLES `audith_objetives_day` WRITE;
 /*!40000 ALTER TABLE `audith_objetives_day` DISABLE KEYS */;
-INSERT INTO `audith_objetives_day` VALUES (1,'INSERT',1,NULL,'2024-11-26',NULL,2000,NULL,10000,NULL,150,NULL,7.50,NULL,1,NULL,'2024-11-27 02:16:11',NULL,NULL,NULL,'2024-11-27 02:16:11','2024-11-27 02:16:11'),(2,'UPDATE',1,'2024-11-26','2024-11-26',2000,2200,10000,12000,150,150,7.50,7.50,1,1,'2024-11-27 02:16:11','2024-11-27 02:16:11',NULL,NULL,'2024-11-27 02:16:11','2024-11-27 02:17:05','2024-11-27 02:17:05'),(3,'INSERT',2,NULL,'2024-12-26',NULL,500,NULL,5000,NULL,30,NULL,7.00,NULL,2,NULL,'2024-11-27 02:58:42',NULL,2,NULL,'2024-11-27 02:58:42','2024-11-27 02:58:42'),(4,'UPDATE',2,'2024-12-26','2024-12-26',500,500,5000,5000,30,30,7.00,8.00,2,2,'2024-11-27 02:58:42','2024-11-27 02:58:42',2,1,'2024-11-27 02:58:42','2024-12-06 23:23:04','2024-12-06 23:23:04'),(5,'UPDATE',2,'2024-12-26','2024-12-26',500,500,5000,5000,30,30,8.00,8.00,2,2,'2024-11-27 02:58:42','2024-11-27 02:58:42',1,1,'2024-12-06 23:23:04','2024-12-06 23:23:04','2024-12-07 02:57:38'),(6,'UPDATE',2,'2024-12-26','2024-12-26',500,501,5000,5001,30,31,8.00,7.00,2,2,'2024-11-27 02:58:42','2024-11-27 02:58:42',1,1,'2024-12-06 23:23:04','2024-12-07 02:58:55','2024-12-07 02:58:55'),(7,'UPDATE',2,'2024-12-26','2024-12-26',501,501,5001,5001,31,31,7.00,7.00,2,2,'2024-11-27 02:58:42','2024-11-27 02:58:42',1,1,'2024-12-07 02:58:55','2024-12-07 02:58:55','2024-12-07 02:59:18'),(8,'UPDATE',2,'2024-12-26','2024-12-26',501,500,5001,5000,31,30,7.00,7.00,2,2,'2024-11-27 02:58:42','2024-11-27 02:58:42',1,1,'2024-12-07 02:58:55','2024-12-07 02:59:47','2024-12-07 02:59:47'),(9,'UPDATE',2,'2024-12-26','2024-12-26',500,500,5000,5000,30,30,7.00,7.00,2,2,'2024-11-27 02:58:42','2024-11-27 02:58:42',1,1,'2024-12-07 02:59:47','2024-12-07 02:59:47','2024-12-07 03:07:49');
 /*!40000 ALTER TABLE `audith_objetives_day` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +77,7 @@ CREATE TABLE `cadence` (
   CONSTRAINT `cadence_ibfk_1` FOREIGN KEY (`id_training`) REFERENCES `training` (`id`),
   CONSTRAINT `cadence_chk_1` CHECK ((`cadence_AVG` <= 300)),
   CONSTRAINT `cadence_chk_2` CHECK ((`cadence_max` <= 300))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +86,7 @@ CREATE TABLE `cadence` (
 
 LOCK TABLES `cadence` WRITE;
 /*!40000 ALTER TABLE `cadence` DISABLE KEYS */;
-INSERT INTO `cadence` VALUES (1,1,112,124);
+INSERT INTO `cadence` VALUES (1,1,166,171),(2,2,158,175);
 /*!40000 ALTER TABLE `cadence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +111,7 @@ CREATE TABLE `dream` (
   CONSTRAINT `dream_health_id_fk` FOREIGN KEY (`id_health`) REFERENCES `health` (`id`),
   CONSTRAINT `dream_chk_1` CHECK ((`awake` <= 24)),
   CONSTRAINT `dream_chk_2` CHECK ((`heart_rate` <= 300))
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +120,6 @@ CREATE TABLE `dream` (
 
 LOCK TABLES `dream` WRITE;
 /*!40000 ALTER TABLE `dream` DISABLE KEYS */;
-INSERT INTO `dream` VALUES (1,'05:45:00','03:39:00','01:56:00',2,61,'11:20:00',1),(2,'01:59:00','01:25:00','01:08:00',0,60,'04:32:00',3),(3,'03:06:00','01:58:00','01:08:00',0,61,'06:12:00',4),(4,'02:30:00','01:59:00','01:40:00',1,61,'06:09:00',5),(5,'00:00:00','00:00:00','00:00:00',0,0,'00:00:00',6),(6,'03:19:00','02:22:00','01:43:00',2,63,'07:24:00',7),(7,'00:00:00','00:00:00','00:00:00',0,0,'00:00:00',8),(8,'00:00:00','00:00:00','00:00:00',0,0,'00:00:00',2),(9,'03:09:00','01:50:00','01:51:00',1,62,'06:50:00',9),(10,'00:00:00','00:00:00','00:00:00',0,0,'02:17:00',10),(11,'03:37:00','02:13:00','00:51:00',1,61,'06:41:00',11),(13,'00:00:00','00:00:00','00:00:00',0,0,'00:00:00',12),(14,'01:39:00','01:03:00','00:33:00',0,60,'03:15:00',13),(15,'03:17:00','02:38:00','01:36:00',0,59,'07:31:00',14),(16,'02:34:00','02:12:00','01:18:00',3,62,'06:04:00',15);
 /*!40000 ALTER TABLE `dream` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +151,7 @@ CREATE TABLE `health` (
   CONSTRAINT `health_chk_2` CHECK ((`steps` <= 100000)),
   CONSTRAINT `health_chk_3` CHECK ((`distance` <= 999.99)),
   CONSTRAINT `health_chk_4` CHECK ((`moviment` <= 300))
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +160,7 @@ CREATE TABLE `health` (
 
 LOCK TABLES `health` WRITE;
 /*!40000 ALTER TABLE `health` DISABLE KEYS */;
-INSERT INTO `health` VALUES (1,'2024-11-23',759,6835,4.47,57,'0',1,'2024-11-24 05:39:48',1,'2024-11-24 05:39:48'),(2,'2024-11-24',1024,6083,3.99,36,'0',2,'2024-11-25 05:52:13',2,'2024-11-25 05:52:13'),(3,'2024-11-25',1499,12814,8.39,94,'0',1,'2024-11-26 03:56:41',1,'2024-11-26 03:56:41'),(4,'2024-11-26',1333,4399,2.88,23,'0',1,'2024-12-02 03:13:39',1,'2024-12-02 03:13:39'),(5,'2024-11-27',1321,8985,5.89,61,'0',1,'2024-12-02 03:14:44',1,'2024-12-05 03:25:38'),(6,'2024-11-28',1266,4198,2.75,8,'0',1,'2024-12-02 03:16:32',1,'2024-12-02 03:16:32'),(7,'2024-11-29',507,2321,1.51,8,'0',1,'2024-12-02 03:18:20',1,'2024-12-02 03:18:20'),(8,'2024-11-30',914,9969,6.53,62,'0',1,'2024-12-02 03:18:58',1,'2024-12-02 03:18:58'),(9,'2024-12-01',587,884,0.58,3,'0',1,'2024-12-05 03:06:35',1,'2024-12-05 03:06:35'),(10,'2024-12-02',1557,14294,9.36,95,'0',1,'2024-12-05 03:07:26',1,'2024-12-05 03:07:26'),(11,'2024-12-03',1363,9250,6.06,57,'0',1,'2024-12-05 03:08:17',1,'2024-12-05 03:08:17'),(12,'2024-12-04',796,2886,1.89,12,'0',1,'2024-12-09 01:44:25',1,'2024-12-09 01:44:25'),(13,'2024-12-05',1381,5180,3.39,27,'0',1,'2024-12-09 01:45:12',1,'2024-12-09 01:45:12'),(14,'2024-12-06',1325,4383,2.87,31,'0',1,'2024-12-09 01:45:56',1,'2024-12-09 01:45:56'),(15,'2024-12-07',1668,16236,13.76,145,'1',1,'2024-12-09 01:46:49',1,'2024-12-09 01:46:49');
+INSERT INTO `health` VALUES (1,'2024-02-10',1464,11566,9.51,64,'1',1,'2025-02-12 02:22:17',1,'2025-02-12 02:22:17'),(2,'2024-02-02',1592,17864,14.01,114,'1',1,'2025-02-12 02:38:23',1,'2025-02-12 02:41:42');
 /*!40000 ALTER TABLE `health` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +185,7 @@ CREATE TABLE `heart_rate` (
   KEY `heart_rate_training_training_id_fk` (`id_training`),
   CONSTRAINT `heart_rate_training_training_id_fk` FOREIGN KEY (`id_training`) REFERENCES `training` (`id`),
   CONSTRAINT `heart_rate_chk_2` CHECK ((`heart_rate_max` <= 500))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +194,7 @@ CREATE TABLE `heart_rate` (
 
 LOCK TABLES `heart_rate` WRITE;
 /*!40000 ALTER TABLE `heart_rate` DISABLE KEYS */;
-INSERT INTO `heart_rate` VALUES (1,1,114,139,'00:47:42','01:12:40','00:02:46','00:00:00','00:00:00');
+INSERT INTO `heart_rate` VALUES (1,1,150,177,'00:01:38','00:04:38','00:03:51','00:09:28','00:08:19'),(2,2,162,173,'00:00:00','00:00:37','00:01:06','00:29:21','00:04:14');
 /*!40000 ALTER TABLE `heart_rate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +225,7 @@ CREATE TABLE `objetives_day` (
   CONSTRAINT `objetives_day_chk_2` CHECK ((`obj_steps` <= 100000)),
   CONSTRAINT `objetives_day_chk_3` CHECK ((`obj_moviment` <= 300)),
   CONSTRAINT `objetives_day_chk_4` CHECK ((`obj_dream` <= 24.00))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +234,6 @@ CREATE TABLE `objetives_day` (
 
 LOCK TABLES `objetives_day` WRITE;
 /*!40000 ALTER TABLE `objetives_day` DISABLE KEYS */;
-INSERT INTO `objetives_day` VALUES (1,'2024-11-26',2200,12000,150,7.50,1,'2024-11-27 02:16:11',NULL,'2024-11-27 02:17:05'),(2,'2024-12-26',500,5000,30,7.00,2,'2024-11-27 02:58:42',1,'2024-12-07 02:59:47');
 /*!40000 ALTER TABLE `objetives_day` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -335,7 +332,7 @@ CREATE TABLE `pace` (
   PRIMARY KEY (`id`),
   KEY `id_training` (`id_training`),
   CONSTRAINT `pace_ibfk_1` FOREIGN KEY (`id_training`) REFERENCES `training` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,7 +341,7 @@ CREATE TABLE `pace` (
 
 LOCK TABLES `pace` WRITE;
 /*!40000 ALTER TABLE `pace` DISABLE KEYS */;
-INSERT INTO `pace` VALUES (1,1,'02:03:13','00:07:28');
+INSERT INTO `pace` VALUES (1,1,'00:05:38','00:05:34'),(2,2,'00:05:55','00:02:19');
 /*!40000 ALTER TABLE `pace` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,7 +361,7 @@ CREATE TABLE `pace_for_km` (
   KEY `id_training` (`id_training`),
   CONSTRAINT `pace_for_km_ibfk_1` FOREIGN KEY (`id_training`) REFERENCES `training` (`id`),
   CONSTRAINT `pace_for_km_chk_1` CHECK ((`km` <= 200))
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,7 +370,7 @@ CREATE TABLE `pace_for_km` (
 
 LOCK TABLES `pace_for_km` WRITE;
 /*!40000 ALTER TABLE `pace_for_km` DISABLE KEYS */;
-INSERT INTO `pace_for_km` VALUES (1,1,1,'00:10:15'),(2,1,2,'00:09:54'),(3,1,3,'00:09:50'),(4,1,4,'00:09:57'),(5,1,5,'00:09:27'),(6,1,6,'00:09:55'),(7,1,7,'00:10:41'),(8,1,8,'00:09:16'),(9,1,9,'00:10:27'),(10,1,10,'00:10:06'),(11,1,11,'00:10:17'),(12,1,12,'00:10:53');
+INSERT INTO `pace_for_km` VALUES (1,1,1,'00:05:31'),(2,1,2,'00:05:36'),(3,1,3,'00:05:29'),(4,1,4,'00:05:45'),(5,1,5,'00:05:48'),(6,2,1,'00:05:48'),(7,2,2,'00:06:00'),(8,2,3,'00:05:59'),(9,2,4,'00:05:57'),(10,2,5,'00:05:49'),(11,2,6,'00:05:53');
 /*!40000 ALTER TABLE `pace_for_km` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,7 +391,7 @@ CREATE TABLE `stride_cm` (
   CONSTRAINT `stride_cm_ibfk_1` FOREIGN KEY (`id_training`) REFERENCES `training` (`id`),
   CONSTRAINT `stride_cm_chk_1` CHECK ((`stride_AVG` <= 300)),
   CONSTRAINT `stride_cm_chk_2` CHECK ((`stride_max` <= 300))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,7 +400,7 @@ CREATE TABLE `stride_cm` (
 
 LOCK TABLES `stride_cm` WRITE;
 /*!40000 ALTER TABLE `stride_cm` DISABLE KEYS */;
-INSERT INTO `stride_cm` VALUES (1,1,88,126);
+INSERT INTO `stride_cm` VALUES (1,1,106,190),(2,2,158,175);
 /*!40000 ALTER TABLE `stride_cm` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,7 +431,7 @@ CREATE TABLE `training` (
   CONSTRAINT `training_chk_3` CHECK ((`kcal_total` <= 3000)),
   CONSTRAINT `training_chk_4` CHECK ((`steps` <= 100000)),
   CONSTRAINT `training_chk_5` CHECK ((`heart_rate_AVG` <= 500))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -443,7 +440,7 @@ CREATE TABLE `training` (
 
 LOCK TABLES `training` WRITE;
 /*!40000 ALTER TABLE `training` DISABLE KEYS */;
-INSERT INTO `training` VALUES (1,15,2,12.81,989,1225,'10:06:00',13813,114);
+INSERT INTO `training` VALUES (1,1,1,5.00,360,414,'00:05:38',4695,150),(2,2,1,6.00,523,592,'00:05:55',5650,162);
 /*!40000 ALTER TABLE `training` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,7 +455,7 @@ CREATE TABLE `type_training` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -467,7 +464,7 @@ CREATE TABLE `type_training` (
 
 LOCK TABLES `type_training` WRITE;
 /*!40000 ALTER TABLE `type_training` DISABLE KEYS */;
-INSERT INTO `type_training` VALUES (1,'Outdoor Running'),(2,'Walking');
+INSERT INTO `type_training` VALUES (1,'Correr al aire libre');
 /*!40000 ALTER TABLE `type_training` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -487,7 +484,7 @@ CREATE TABLE `users` (
   `state` enum('0','1','2','3') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `chk_state` CHECK ((`state` in (_utf8mb4'0',_utf8mb4'1',_utf8mb4'2',_utf8mb4'3')))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -496,7 +493,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Juan Builes','Builes','juan_builes@hotmail.com','$2a$12$n.3M/nuf82ClpN80YqYgTOBNU7lwBRDmIBWNIeOn9bpq1As.o5NGG','1'),(2,'admin','Admin','juan_builes@hotmail.com','$2b$12$O49PN6.ZKA1GoatHxy.s2OGz4kpCHn2IcvtWwDgpuljY0A8NiDicS','1'),(3,'Jaun','buileS','elpinchepastel@gmail.com','$2b$12$0mUXnkvhXBY..yvZ11G83OfWQ8Mlv8uLXcGmJADvl8x8KhO4YzaBG','3');
+INSERT INTO `users` VALUES (1,'Juan Builes','Builes','juan_builes@hotmail.com','$2b$12$XX6m6l9ikXyZlwTeFP70/.HmIvkvcUkYLoGOPnqvyMdTz/jLTxvCS','1'),(2,'Administrador','Admin','juan_builes@hotmail.com','$2b$12$O49PN6.ZKA1GoatHxy.s2OGz4kpCHn2IcvtWwDgpuljY0A8NiDicS','1'),(3,'Jaun','buileS','elpinchepastel@gmail.com','$2b$12$0mUXnkvhXBY..yvZ11G83OfWQ8Mlv8uLXcGmJADvl8x8KhO4YzaBG','2'),(4,'111111','dododjdopjdpdd','dijdopijd','$2b$12$gdCuAxq5n2mhmOFjrWNz/OxLkLDszaqMVPqd2cWbn.L9usQvW0omS','3'),(5,'klcjkldfj','djniod','niodhjd','$2b$12$.jc3Vg/LXDXfbC0muYW64O3oPNotELOU2jfSJaWLyrrRkHwi2n2be','3'),(6,'ddddddd','dddddd','juan_builes@hotmail.com','$2b$12$vF8vQv6785WzTyYMB4I85O/2.Up6ElTliD1JAgCRuBg3n6W1GPoCS','3'),(7,'Erick Alarcon','Erick','erick@gmail.com','$2b$12$AK2.w81BWw.8Op/WuqbzDeeHTF1Vxnaz05vsHKlKZk2PzZnzv9AS2','0'),(8,'Borrame','borrame@gmail.com','borrame@gmail.com','$2b$12$48FjJclsb6IZr4.q0z.kMupO93Lnbz9jHQPlPb6rS0Rz14hXnnbO.','0'),(9,'dddd','ddd','dddd@gmail.com','$2b$12$c/PAIkVTdNJ4MEuRcC58Aedvpi9MyRqoU1DM9eGqPt.Z7dR0eu6U2','0');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -509,4 +506,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-09  2:16:18
+-- Dump completed on 2025-02-24 19:04:42

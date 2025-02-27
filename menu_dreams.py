@@ -8,7 +8,6 @@ from read_dreams import fetch_dreams_from_db, fetch_dreams_id
 from update_dream import get_dream, update_dream
 from delete_dream import delete_dream, id_is_valid
 
-
 def clear_console():
     current_os = platform.system()
     if current_os == "Windows":
