@@ -1,4 +1,4 @@
-from list_type_training import fetch_type_training
+from training.list_type_training import fetch_type_training
 
 def fetch_training(in_training):
     names = [item['name'] for item in fetch_type_training()]

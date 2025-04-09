@@ -8,7 +8,7 @@ import bcrypt
 from mysql.connector import Error
 from dotenv import load_dotenv
 from colorama import init, Fore, Back, Style
-from loader import DataLoader
+from utils.loader import DataLoader
 import smtplib
 import random
 import string

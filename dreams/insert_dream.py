@@ -1,12 +1,12 @@
-from conection import connect_to_database
+from colorama import Fore, Style
+from database.connection import connect_to_database
 from mysql.connector import Error
 import sys
 import time
-from colorama import Fore, Style
-
-def animate_objetive():
+    
+def animate_dream():
     print("\n")
-    texto = "Insertando registro de objetivo"
+    texto = "Insertando registro de sueño"
     iteraciones = 50
     delay = 0.05
     puntos = 0
@@ -19,17 +19,17 @@ def animate_objetive():
     
     print("\n")
 
-def insert_objetive(date, obj_calories, obj_steps, obj_moviment, obj_dream, user):
+def insert_dream(ligth, deep, REM, awake, heart_rate, total_dream, id_health):
     try:
         conn = connect_to_database()
         cursor = conn.cursor()
-        query = """INSERT INTO objetives_day (date, obj_calories, obj_steps, obj_moviment, obj_dream, id_user_create, id_user_update)
+        query = """INSERT INTO dream (ligth, deep, REM, awake, heart_rate, total_dream, id_health)
                    VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        values = (date, obj_calories, obj_steps, obj_moviment, obj_dream, user, user)
+        values = (ligth, deep, REM, awake, heart_rate, total_dream, id_health)
         cursor.execute(query, values)
         conn.commit()
-        animate_objetive()
-        print("\nRegistro de objetivo insertado con éxito")
+        animate_dream()
+        print("\nRegistro de sueño insertado con éxito")
         conn.close()
 
     except Error as e:
@@ -38,3 +38,4 @@ def insert_objetive(date, obj_calories, obj_steps, obj_moviment, obj_dream, user
 
     finally:
         cursor.close()
+

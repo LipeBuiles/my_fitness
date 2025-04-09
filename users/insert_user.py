@@ -1,10 +1,9 @@
 import time
-import sys
 import bcrypt
 from mysql.connector import Error
-from conection import connect_to_database
+from database.connection import connect_to_database
 from colorama import Fore, Style
-from loader import DataLoader
+from utils.loader import DataLoader
 from clear import clear_console
 
 def hash_password(password):

@@ -1,9 +1,9 @@
 from colorama import Fore, Style
-from conection import connect_to_database
+from database.connection import connect_to_database
 from mysql.connector import Error
-from read_dreams import fetch_dreams_df
+from dreams.read_dreams import fetch_dreams_df
 from tabulate import tabulate
-from read_health import fetch_health
+from health.read_health import fetch_health
 import pandas as pd
 import sys
 import time

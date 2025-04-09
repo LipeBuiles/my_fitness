@@ -1,4 +1,4 @@
-from conection import connect_to_database
+from database.connection import connect_to_database
 from colorama import Fore, Style
 import sys
 import time

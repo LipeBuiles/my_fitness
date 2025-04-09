@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from conection import connect_to_database
+from database.connection import connect_to_database
 from mysql.connector import Error
 import sys
 import time

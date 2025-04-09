@@ -1,4 +1,4 @@
-from conection import connect_to_database
+from database.connection import connect_to_database
 
 def fetch_type_training():
     conn = connect_to_database()

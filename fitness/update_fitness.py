@@ -1,8 +1,8 @@
-from conection import connect_to_database
+from database.connection import connect_to_database
 import json
 from datetime import datetime
-from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm
-from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm
+from training.in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm
+from training.insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm
 
 def get_logged_in_user_id():
     try:

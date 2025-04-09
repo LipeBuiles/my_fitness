@@ -1,7 +1,7 @@
 from colorama import Fore, Style
-from conection import connect_to_database
+from database.connection import connect_to_database
 from mysql.connector import Error
-from read_users import read_users
+from users.read_users import read_users
 from tabulate import tabulate
 import bcrypt
 import sys

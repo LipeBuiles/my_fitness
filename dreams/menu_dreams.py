@@ -2,11 +2,11 @@ import time
 import sys
 import platform
 import os
-from dreams import read_data_dream
-from insert_dream import insert_dream
-from read_dreams import fetch_dreams_from_db, fetch_dreams_id
-from update_dream import get_dream, update_dream
-from delete_dream import delete_dream, id_is_valid
+from dreams.dreams import read_data_dream
+from dreams.insert_dream import insert_dream
+from dreams.read_dreams import fetch_dreams_from_db, fetch_dreams_id
+from dreams.update_dream import get_dream, update_dream
+from dreams.delete_dream import delete_dream, id_is_valid
 
 def clear_console():
     current_os = platform.system()

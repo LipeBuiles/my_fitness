@@ -2,10 +2,10 @@ import platform
 import os
 import time
 import sys
-from objetives import fetch_create_objtives
-from insert_objetive import insert_objetive
-from read_objetive_day import fetch_objetive_day_from_db
-from update_objetive import fetch_update_objetive, update_objetive
+from objectives.objectives import fetch_create_objtives
+from objectives.insert_objetive import insert_objetive
+from objectives.read_objetive_day import fetch_objetive_day_from_db
+from objectives.update_objetive import fetch_update_objetive, update_objetive
 
 def clear_console():
     current_os = platform.system()

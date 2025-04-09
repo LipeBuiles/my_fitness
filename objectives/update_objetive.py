@@ -1,7 +1,7 @@
 from colorama import Fore, Style
-from conection import connect_to_database
+from database.connection import connect_to_database
 from mysql.connector import Error
-from read_objetive_day import fetch_objetive_day
+from objectives.read_objetive_day import fetch_objetive_day
 import pandas as pd
 import sys
 import time

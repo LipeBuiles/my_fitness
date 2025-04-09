@@ -1,11 +1,11 @@
 from datetime import datetime
-from in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm, fetch_type_training_add
-from insert_fitness import insert_fitness
-from insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm, insert_type_training
-from read_fitness import fetch_fitness_from_db
-from delete_health import search_id_train, delete_all_data_trainig, delete_dream, delete_health
-from read_health import fetch_health
-from update_fitness import update_fitness
+from training.in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm, fetch_type_training_add
+from fitness.insert_fitness import insert_fitness
+from training.insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm, insert_type_training
+from fitness.read_fitness import fetch_fitness_from_db
+from health.delete_health import search_id_train, delete_all_data_trainig, delete_dream, delete_health
+from health.read_health import fetch_health
+from fitness.update_fitness import update_fitness
 import json
 import os
 import platform

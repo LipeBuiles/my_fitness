@@ -1,5 +1,5 @@
 from menu import principal_menu
-from conection import connect_to_database, login_user
+from database.connection import connect_to_database, login_user
 
 if __name__ == "__main__":
     conn = connect_to_database()

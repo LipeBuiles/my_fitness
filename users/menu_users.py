@@ -2,10 +2,10 @@ import time
 import sys
 import platform
 import os
-from update_user import *
-from read_users import fetch_users_from_db
-from insert_user import insert_user
-from delete_user import *
+from users.update_user import *
+from users.read_users import fetch_users_from_db
+from users.insert_user import insert_user
+from users.delete_user import *
 
 def clear_console():
     current_os = platform.system()
