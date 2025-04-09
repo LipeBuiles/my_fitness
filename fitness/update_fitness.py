@@ -66,43 +66,52 @@ def update_fitness(id_health):
         values = (id_health,)
         cursor.execute(query, values)
         data = cursor.fetchall()
-
-        id_training = data[0][0]
-
-        query = "DELETE FROM cadence WHERE id_training = %s"
-        values = (id_training,)
-        cursor.execute(query, values)
         conn.commit()
 
-        query = "DELETE FROM heart_rate WHERE id_training = %s"
-        values = (id_training,)
-        cursor.execute(query, values)
-        conn.commit()
+        if not data:
+            print("No se encontró ningún entrenamiento asociado con el id proporcionado.")
+            query = "UPDATE health SET date = %s, calories = %s, steps = %s, distance = %s, moviment = %s, in_training = %s, id_user_update = %s, update_date = %s WHERE id = %s"
+            values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
+            cursor.execute(query, values)
+            conn.commit()
 
-        query = "DELETE FROM pace WHERE id_training = %s"
-        values = (id_training,)
-        cursor.execute(query, values)
-        conn.commit()
+        else:
+            id_training = data[0][0]
 
-        query = "DELETE FROM pace_for_km WHERE id_training = %s"
-        values = (id_training,)
-        cursor.execute(query, values)
-        conn.commit()
+            query = "DELETE FROM cadence WHERE id_training = %s"
+            values = (id_training,)
+            cursor.execute(query, values)
+            conn.commit()
 
-        query = "DELETE FROM stride_cm WHERE id_training = %s"
-        values = (id_training,)
-        cursor.execute(query, values)
-        conn.commit()
+            query = "DELETE FROM heart_rate WHERE id_training = %s"
+            values = (id_training,)
+            cursor.execute(query, values)
+            conn.commit()
 
-        query = "DELETE FROM training WHERE id_health = %s"
-        values = (id_health,)
-        cursor.execute(query, values)
-        conn.commit()
+            query = "DELETE FROM pace WHERE id_training = %s"
+            values = (id_training,)
+            cursor.execute(query, values)
+            conn.commit()
 
-        query = "UPDATE health SET date = %s, calories = %s, steps = %s, distance = %s, moviment = %s, in_training = %s, id_user_update = %s, update_date = %s WHERE id = %s"
-        values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
-        cursor.execute(query, values)
-        conn.commit()
+            query = "DELETE FROM pace_for_km WHERE id_training = %s"
+            values = (id_training,)
+            cursor.execute(query, values)
+            conn.commit()
+
+            query = "DELETE FROM stride_cm WHERE id_training = %s"
+            values = (id_training,)
+            cursor.execute(query, values)
+            conn.commit()
+
+            query = "DELETE FROM training WHERE id_health = %s"
+            values = (id_health,)
+            cursor.execute(query, values)
+            conn.commit()
+
+            query = "UPDATE health SET date = %s, calories = %s, steps = %s, distance = %s, moviment = %s, in_training = %s, id_user_update = %s, update_date = %s WHERE id = %s"
+            values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
+            cursor.execute(query, values)
+            conn.commit()
 
     elif new_in_training == '1':  
         query = "SELECT * FROM training WHERE id_health = %s"
