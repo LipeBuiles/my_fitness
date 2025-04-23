@@ -14,7 +14,7 @@ import random
 import string
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-# from menu import principal_menu
+from utils.loaders import Loader
 
 init()
 load_dotenv()
@@ -75,10 +75,10 @@ def login_user(connection, user_name):
             while attempts < 3:
                 password = getpass.getpass("\nIngrese su contraseña: ")
                 if verify_password(stored_password, password):
-                    loader = DataLoader(user_name)
-                    print(loader.load_login_data())
-                    time.sleep(3)
-                    
+                    loader = Loader()
+                    loader.loading()
+                    time.sleep(2)
+
                     try:
                         with open('logged_in_user.json', 'w') as f:
                             json.dump({'id': id}, f)

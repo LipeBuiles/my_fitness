@@ -3,21 +3,22 @@ from database.connection import connect_to_database
 from mysql.connector import Error
 import sys
 import time
+import utils.loaders as Loader
     
-def animate_login():
-    print("\n")
-    texto = "Insertando registro fitness"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
+# def animate_login():
+#     print("\n")
+#     texto = "Insertando registro fitness"
+#     iteraciones = 50
+#     delay = 0.05
+#     puntos = 0
 
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
+#     for _ in range(iteraciones):
+#         sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
+#         sys.stdout.flush()
+#         time.sleep(delay)
+#         puntos += 1
     
-    print("\n")
+#     print("\n")
 
 def insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update):
     try:
@@ -29,8 +30,8 @@ def insert_fitness(date, calories, steps, distance, moviment, in_training, id_us
         cursor.execute(query, values)
         conn.commit()
         insert_id = cursor.lastrowid
-        animate_login()
-        print("\nRegistro fitness insertado con éxito")
+        loader = Loader.Loader()
+        loader.insert_record("fitness")
         conn.close()
         return insert_id
 

@@ -3,7 +3,7 @@ import bcrypt
 from mysql.connector import Error
 from database.connection import connect_to_database
 from colorama import Fore, Style
-from utils.loader import DataLoader
+import utils.loaders as Loader
 from clear import clear_console
 
 def hash_password(password):
@@ -21,8 +21,8 @@ def insert_user(name, user_name, email, password, state):
         values = (name, user_name, email, hashed_password, state)
         cursor.execute(query, values)
         conn.commit()
-        loader = DataLoader(user_name)
-        print(loader.load_create_user())
+        loader = Loader.Loader()
+        loader.insert_record("usuario")
         time.sleep(2)
         conn.close()
         clear_console()
