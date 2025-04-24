@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from mysql.connector import Error
 from objectives.read_objetive_day import fetch_objetive_day
 import pandas as pd
@@ -100,7 +100,7 @@ def fetch_update_objetive():
 
 def update_objetive(date, obj_calories, obj_steps, obj_moviment, obj_dream, id_user_update):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """UPDATE objetives_day
                    SET obj_calories = %s, obj_steps = %s, obj_moviment = %s, obj_dream = %s, id_user_update = %s

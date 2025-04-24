@@ -1,9 +1,9 @@
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from tabulate import tabulate
 import pandas as pd
 
 def fetch_health():
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
     query = "SELECT id, date, calories, steps, distance, moviment, in_training FROM health ORDER BY id DESC"

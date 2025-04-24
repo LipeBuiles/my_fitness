@@ -1,9 +1,9 @@
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from tabulate import tabulate
 import pandas as pd
 
 def fetch_users_from_db():
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
     query = "SELECT name, user_name, email, state FROM users WHERE state != '3' ORDER BY id DESC"
@@ -30,17 +30,30 @@ def fetch_users_from_db():
     return print('\n' + df)
 
 def read_users():
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
-    query = "SELECT* FROM users WHERE state != '3' ORDER BY id DESC"
+    query = "SELECT id, name, user_name, email, password, state FROM users WHERE state != '3' ORDER BY id DESC"
     cursor.execute(query)
 
     data = cursor.fetchall()
-    columns = ["id", "Nombre", "Usuario", "Correo Electronico", "Contraseña", "Estado"]
+    state_mapping = {'0': 'Inactivo', '1': 'Activo', '2': 'Bloqueado'}
+    data = [row[:5] + (state_mapping.get(row[5], row[5]),) for row in data]
+    columns = ["id", "Nombre", "Usuario", "Correo Electronico", 'Contraseña', "Estado"]
     df = pd.DataFrame(data, columns=columns)
-    df_str = df.to_string(index=False)
+    
+    conn.close()
+
+    return df
+
+def user_exists(user_id):
+    conn = DatabaseConnection().connect_to_database()
+    cursor = conn.cursor()
+
+    query = "SELECT EXISTS(SELECT 1 FROM users WHERE id = %s)"
+    cursor.execute(query, (user_id,))
+    exists = cursor.fetchone()[0]
 
     conn.close()
 
-    return df, df_str
+    return bool(exists)

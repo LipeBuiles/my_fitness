@@ -1,12 +1,12 @@
 import time
-import sys
 import platform
 import os
 from users.update_user import *
-from users.read_users import fetch_users_from_db
+from users.read_users import fetch_users_from_db, user_exists
 from users.insert_user import insert_user
 from users.delete_user import *
 from colorama import Fore, Back, Style
+from utils.loaders import Loader
 
 def clear_console():
     current_os = platform.system()
@@ -66,28 +66,42 @@ def menu_users():
                         insert_user(name, user_name, email, password, state)
                         
                     case '3':
+                        print("")
                         print(list_users())
                         id_user = int(input("\nIngrese el id del usuario a editar: "))
                         user = get_user(id_user)
                         if user is not None:
                             update_user(*user)
                     case '4':
+                        print("")
                         print(list_users())
-                        id_user = int(input("\nIngrese el id del usuario a eliminar: "))
-                        delete_user(id_user)
+                        while True:
+                            try:
+                                id_user = int(input("\nIngrese el id del usuario a eliminar: "))
+                                if id_user <= 0:
+                                    raise ValueError("El ID debe ser un entero positivo mayor a 0")
+                                break
+                            except ValueError as e:
+                                print("El ID debe ser un entero positivo mayor a 0")
+                                continue
+                        if not user_exists(id_user):
+                            print(f"{Back.WHITE}{Fore.BLUE}\nEl usuario no existe{Style.RESET_ALL}")
+                            time.sleep(2)
+                            continue
+                        else:
+                            confirm = input(f"\n¿Está seguro de que desea eliminar el usuario con ID {id_user}? (s/n): ")
+                            if confirm.lower() == 's':
+                                delete_user(id_user)
+                            else:
+                                print(f"{Back.WHITE}{Fore.BLUE}\nEliminación cancelada.{Style.RESET_ALL}")
+                                time.sleep(2)
+                                continue
                     case '5':
                         from menu import principal_menu
-
                         principal_menu()
                     case '6':
-                        print("Saliendo...")
-                        try:
-                            os.remove("logged_in_user.json")
-                        except FileNotFoundError:
-                            print("El archivo logged_in_user.json no existe.")
-                        time.sleep(3)
-                        sys.exit()
-
+                        loader = Loader()
+                        loader.exit()
                     case _:
                         print("\nOpción no válida, por favor intente de nuevo.")
         except KeyboardInterrupt:

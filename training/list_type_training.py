@@ -1,7 +1,7 @@
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 
 def fetch_type_training():
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
     query = "SELECT * FROM type_training ORDER BY name ASC"

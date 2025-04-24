@@ -1,4 +1,4 @@
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 import json
 from datetime import datetime
 from training.in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm
@@ -14,7 +14,7 @@ def get_logged_in_user_id():
         return None
 
 def update_fitness(id_health):
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
     query = "SELECT * FROM health WHERE id = %s"
     values = (id_health,)

@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from mysql.connector import Error
 import sys
 import time
@@ -134,7 +134,7 @@ def insert_training(id_health, id_type_training, km_distance, kcal_active, kcal_
 
 def insert_candence(id_training, cadence_AVG, cadence_max):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO cadence (id_training, cadence_AVG, cadence_max)
                    VALUES (%s, %s, %s)"""

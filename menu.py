@@ -1,35 +1,22 @@
-import time
-import sys
-import platform
-import os
-from users.menu_users import menu_users
-from fitness.menu_fitness import menu_fitness
-from dreams. menu_dreams import menu_dreams
-from objectives.menu_objetives import menu_objetives
-from utils.loaders import Loader
 from colorama import Fore, Back, Style
-
-
-def clear_console():
-    current_os = platform.system()
-    if current_os == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
+from dreams. menu_dreams import menu_dreams
+from fitness.menu_fitness import menu_fitness
+from objectives.menu_objetives import menu_objetives
+from users.menu_users import menu_users
+from utils.loaders import Loader
+from utils.options import Options
 
 def principal_menu():
-    clear_console()
+
+    clear = Options()
+    clear.clear_console()
+
     while True:
         try:
             while True:
-                
 
-                print("\nBienvenido a la aplicación, este es el menú principal con las siguientes opciones:\n")
-                print("1. Gestión de usuarios")
-                print("2. Gestión de registros de entrenamiento")
-                print("3. Gestión de registros del sueño")
-                print("4. Gestión de objetivos")
-                print("5. Salir\n")
+                menu = Options()
+                menu.display_menu()
 
                 option = input("Selecciona una opción: ")
                 
@@ -46,14 +33,10 @@ def principal_menu():
                     case '5':
                         loader = Loader()
                         loader.exit()
-                        if os.path.exists("logged_in_user.json"):
-                            os.remove("logged_in_user.json")
-                        time.sleep(2)
-                        sys.exit()
                     case _:
                         print("Opción no válida, por favor intente de nuevo.")
         except KeyboardInterrupt:
-                clear_console()
+                clear.clear_console()
                 print(f"{Back.WHITE}{Fore.RED}\n\nCtrl+C está deshabilitado. Use la opción 6 para salir.{Style.RESET_ALL}")
 
 if __name__ == "__main__":

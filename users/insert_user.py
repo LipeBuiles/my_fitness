@@ -1,7 +1,7 @@
 import time
 import bcrypt
 from mysql.connector import Error
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from colorama import Fore, Style
 import utils.loaders as Loader
 from clear import clear_console
@@ -13,7 +13,7 @@ def hash_password(password):
 
 def insert_user(name, user_name, email, password, state):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         hashed_password = hash_password(password)
         query = """INSERT INTO users (name, user_name, email, password, state)

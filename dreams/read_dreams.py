@@ -1,9 +1,9 @@
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from tabulate import tabulate
 import pandas as pd
 
 def fetch_dreams_from_db():
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
     query = "SELECT h.date as date, d.ligth, d.deep, d.REM, d.awake, d.heart_rate, d.total_dream FROM dream d INNER JOIN health h ON d.id_health = h.id ORDER BY date desc"

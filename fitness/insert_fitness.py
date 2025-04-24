@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from mysql.connector import Error
 import sys
 import time
@@ -22,7 +22,7 @@ import utils.loaders as Loader
 
 def insert_fitness(date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO health (date, calories, steps, distance, moviment, in_training, id_user_create, id_user_update)
                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""

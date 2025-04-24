@@ -1,4 +1,4 @@
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from mysql.connector import Error
 import sys
 import time
@@ -21,7 +21,7 @@ def animate_objetive():
 
 def insert_objetive(date, obj_calories, obj_steps, obj_moviment, obj_dream, user):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO objetives_day (date, obj_calories, obj_steps, obj_moviment, obj_dream, id_user_create, id_user_update)
                    VALUES (%s, %s, %s, %s, %s, %s, %s)"""

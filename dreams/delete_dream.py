@@ -1,4 +1,4 @@
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from colorama import Fore, Style
 import sys
 import time
@@ -19,7 +19,7 @@ def animate_delete():
 
 def id_is_valid(id_dream):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
 
         query = "SELECT EXISTS(SELECT 1 FROM dream WHERE id = %s);"

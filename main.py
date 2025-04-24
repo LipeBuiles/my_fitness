@@ -1,5 +1,6 @@
 from menu import principal_menu
-from database.connection import connect_to_database, login_user
+from database.connection import DatabaseConnection
+from users.manager_user import UserManager
 import sentry_sdk
 
 sentry_sdk.init(
@@ -9,12 +10,13 @@ sentry_sdk.init(
 
 if __name__ == "__main__":
     try:
-        conn = connect_to_database()
+        connection = DatabaseConnection()
+        conn = connection.connect_to_database()
         if conn:
             input_user_name = input("\nIngrese su nombre de usuario: ")
-            
-            if login_user(conn, input_user_name):
-                conn.close()
+            login = UserManager(conn)
+            if login.login_user(input_user_name):
+                close = connection.close_connection()
                 principal_menu()
     except Exception as e:
         sentry_sdk.capture_exception(e)

@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from mysql.connector import Error
 import sys
 import time
@@ -21,7 +21,7 @@ def animate_dream():
 
 def insert_dream(ligth, deep, REM, awake, heart_rate, total_dream, id_health):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO dream (ligth, deep, REM, awake, heart_rate, total_dream, id_health)
                    VALUES (%s, %s, %s, %s, %s, %s, %s)"""

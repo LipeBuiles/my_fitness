@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from database.connection import connect_to_database
+from database.connection import DatabaseConnection
 from mysql.connector import Error
 from dreams.read_dreams import fetch_dreams_df
 from tabulate import tabulate
@@ -74,7 +74,7 @@ def get_dream(id_dream):
 
 def update_dream(id_dream, new_ligth, new_deep, new_REM, new_awake, new_heart_rate, new_total_dream, new_id_health):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
 
         query = "update dream set ligth = %s, deep = %s, REM = %s, awake = %s, heart_rate = %s, total_dream = %s, id_health = %s where id = %s"
