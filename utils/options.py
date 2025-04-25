@@ -19,3 +19,13 @@ class Options:
         print("3. Gestión de registros del sueño")
         print("4. Gestión de objetivos")
         print("5. Salir\n")
+
+    @staticmethod
+    def display_user_menu():
+        print("\nBienvenido a la aplicación, este es el menú de gestión de usuarios con las siguientes opciones:\n")
+        print("1. Listar usuarios")
+        print("2. Crear usuario")
+        print("3. Editar usuario")
+        print("4. Eliminar usuario")
+        print("5. Regresar al menú principal")
+        print("6. Salir\n")

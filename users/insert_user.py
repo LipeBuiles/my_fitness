@@ -4,7 +4,6 @@ from mysql.connector import Error
 from database.connection import DatabaseConnection
 from colorama import Fore, Style
 import utils.loaders as Loader
-from clear import clear_console
 
 def hash_password(password):
     salt = bcrypt.gensalt()
@@ -25,7 +24,6 @@ def insert_user(name, user_name, email, password, state):
         loader.insert_record("usuario")
         time.sleep(2)
         conn.close()
-        clear_console()
 
     except Error as e:
         print(f"\nError al insertar datos: {e}")
