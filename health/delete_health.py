@@ -36,7 +36,7 @@ def delete_dream(id_health):
         
 def search_id_train(id_health):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = "SELECT * FROM training WHERE id_health = %s;"
         values = (id_health,)
@@ -53,7 +53,7 @@ def search_id_train(id_health):
 
 def delete_all_data_trainig(id_training, id_health):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         
         query = "DELETE FROM cadence WHERE id_training = %s;"
@@ -100,7 +100,7 @@ def delete_all_data_trainig(id_training, id_health):
 
 def delete_health(id_health):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
 
         query = "DELETE FROM health WHERE id = %s;"

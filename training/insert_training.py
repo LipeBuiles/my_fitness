@@ -111,7 +111,7 @@ def animate_type_training():
 
 def insert_training(id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO training (id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG)
                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
@@ -151,7 +151,7 @@ def insert_candence(id_training, cadence_AVG, cadence_max):
 
 def insert_heart_rate(id_training, heart_rate_AVG, heart_rate_max, ligth_pace, intensive_pace, aerobic_pace, anaerobic_pace, vo2_max):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO heart_rate (id_training, heart_rate_AVG, heart_rate_max, ligth_pace, intensive_pace, aerobic_pace, anaerobic_pace, vo2_max)
                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
@@ -168,7 +168,7 @@ def insert_heart_rate(id_training, heart_rate_AVG, heart_rate_max, ligth_pace, i
 
 def insert_pace(id_training, pace, pace_max):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO pace (id_training, pace, pace_max)
                    VALUES (%s, %s, %s)"""
@@ -185,7 +185,7 @@ def insert_pace(id_training, pace, pace_max):
 
 def insert_pace_for_km(id_training, *pace_for_km):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         for km in range(len(pace_for_km)):
             query = """INSERT INTO pace_for_km (id_training, km, pace)
@@ -220,7 +220,7 @@ def insert_stride_cm(id_training, stride_cm, stride_max):
 
 def insert_type_training(name):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO type_training (name)
                    VALUES (%s)"""

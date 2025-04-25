@@ -25,7 +25,7 @@ def fetch_dreams_from_db():
 
 
 def fetch_dreams():
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
     query = "SELECT ligth, deep, REM, awake, heart_rate, total_dream FROM dream ORDER BY id DESC"
@@ -47,7 +47,7 @@ def fetch_dreams():
     return print('\n' + df)
 
 def fetch_dreams_df():
-    conn = connect_to_database()
+    conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
     query = "SELECT id, ligth, deep, REM, awake, heart_rate, total_dream, id_health FROM dream ORDER BY id DESC"

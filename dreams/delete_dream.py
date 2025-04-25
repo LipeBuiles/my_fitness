@@ -37,7 +37,7 @@ def id_is_valid(id_dream):
 
 def delete_dream(id_dream):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
 
         query = "DELETE from dream WHERE id = %s"
