@@ -6,7 +6,7 @@ def fetch_fitness_from_db():
     conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
-    query = "SELECT date, calories, steps, distance, moviment, in_training FROM health ORDER BY id DESC"
+    query = "SELECT date, calories, steps, distance, moviment, CASE WHEN in_training = 1 THEN 'No' ELSE 'Si' END as in_training FROM health ORDER BY date DESC"
     cursor.execute(query)
 
     columns = ["Fecha", "Calorias", "Pasos", "Distancia", "Movimiento", "En entrenamiento"]

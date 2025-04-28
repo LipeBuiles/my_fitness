@@ -203,7 +203,7 @@ def insert_pace_for_km(id_training, *pace_for_km):
 
 def insert_stride_cm(id_training, stride_cm, stride_max):
     try:
-        conn = connect_to_database()
+        conn = DatabaseConnection().connect_to_database()
         cursor = conn.cursor()
         query = """INSERT INTO stride_cm (id_training, stride_AVG, stride_max)
                    VALUES (%s, %s, %s)"""
