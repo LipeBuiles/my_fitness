@@ -1,5 +1,7 @@
 import os
 import platform
+import json
+from colorama import Fore, Style
 
 class Options:
 
@@ -29,3 +31,24 @@ class Options:
         print("4. Eliminar usuario")
         print("5. Regresar al menú principal")
         print("6. Salir\n")
+
+    @staticmethod
+    def display_fitness_menu():
+        print("\nBienvenido a la aplicación, este es el menú de gestión de registros de entrenamiento con las siguientes opciones:\n")
+        print("1. Listar registros de entrenamiento")
+        print("2. Crear registro de entrenamiento")
+        print("3. Editar registro de entrenamiento")
+        print("4. Eliminar registro de entrenamiento")
+        print("5. Crear tipo de entrenamiento")
+        print("6. Regresar al menú principal")
+        print("7. Salir\n")
+
+    @staticmethod
+    def get_logged_in_user_id():
+        try:
+            with open('logged_in_user.json', 'r') as f:
+                data = json.load(f)
+                return data['id']
+        except FileNotFoundError:
+            print(Fore.RED + "No hay ningún usuario logueado." + Style.RESET_ALL)
+            return None
