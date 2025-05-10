@@ -18,7 +18,8 @@ def fetch_dreams_from_db():
     for col in ["Ligero", "Profundo", "REM", "Total Sueño"]:
         df[col] = df[col].astype(str).str.replace("0 days ", "")
     
-    df = tabulate(df, headers='keys', tablefmt='fancy_grid', showindex=False)
+    df = tabulate(df, headers='keys', tablefmt='github', showindex=False)
+    df = df.replace('|', '\033[92m|\033[0m')  # Replace '|' with green-colored '|'
     conn.close()
 
     return print('\n' + df)
@@ -68,6 +69,7 @@ def fetch_dreams_df():
 
 def fetch_dreams_id():
     df = fetch_dreams_df()
-    df = tabulate(df, headers='keys', tablefmt='fancy_grid', showindex=False)
+    df = tabulate(df, headers='keys', tablefmt='github', showindex=False)
+    df = df.replace('|', '\033[92m|\033[0m')  # Replace '|' with green-colored '|'
     return print('\n' + df)
     

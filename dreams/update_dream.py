@@ -7,20 +7,7 @@ from health.read_health import fetch_health
 import pandas as pd
 import sys
 import time
-
-def animate_login():
-    print("\n")
-    texto = "Actualizando registro del sueño "
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    print("\n")
+from utils.loaders import Loader
 
 def get_dream(id_dream):
     fetch_dreams_df()
@@ -69,7 +56,7 @@ def get_dream(id_dream):
             return id_dream, new_ligth, new_deep, new_REM, new_awake, new_heart_rate, new_total_dream, new_id_health
 
         else:
-            print("\nEl usuario no existe")
+            print(Fore.RED + "\nEl registro de sueño no existe" + Style.RESET_ALL)
             return None
 
 def update_dream(id_dream, new_ligth, new_deep, new_REM, new_awake, new_heart_rate, new_total_dream, new_id_health):
@@ -81,9 +68,9 @@ def update_dream(id_dream, new_ligth, new_deep, new_REM, new_awake, new_heart_ra
         values = (new_ligth, new_deep, new_REM, new_awake, new_heart_rate, new_total_dream, new_id_health, id_dream)
         cursor.execute(query, values)
         conn.commit()
-        animate_login()
-        print("\nRegistro de sueño actualizado con éxito")
         conn.close()
+        loader = Loader()
+        loader.update_record("sueño")
     except Error as e:
         print(f"\nError al insertar datos: {e}")
 

@@ -2,20 +2,7 @@ from database.connection import DatabaseConnection
 from colorama import Fore, Style
 import sys
 import time
-
-def animate_delete():
-    print("\n")
-    texto = "Eliminando registro del sueño "
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    print("\n")
+from utils.loaders import Loader
 
 def id_is_valid(id_dream):
     try:
@@ -43,11 +30,11 @@ def delete_dream(id_dream):
         query = "DELETE from dream WHERE id = %s"
         values = (id_dream,)
         cursor.execute(query, values)
-
         conn.commit()
-        animate_delete()
-        print("\nRegistro eliminado exitosamente")
         conn.close()
+
+        loader = Loader()
+        loader.delete_record("sueño")
 
     except Exception as e:
         print(f"Error: {e}")

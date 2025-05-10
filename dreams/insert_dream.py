@@ -3,21 +3,7 @@ from database.connection import DatabaseConnection
 from mysql.connector import Error
 import sys
 import time
-    
-def animate_dream():
-    print("\n")
-    texto = "Insertando registro de sueño"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
+from utils.loaders import Loader
 
 def insert_dream(ligth, deep, REM, awake, heart_rate, total_dream, id_health):
     try:
@@ -28,9 +14,9 @@ def insert_dream(ligth, deep, REM, awake, heart_rate, total_dream, id_health):
         values = (ligth, deep, REM, awake, heart_rate, total_dream, id_health)
         cursor.execute(query, values)
         conn.commit()
-        animate_dream()
-        print("\nRegistro de sueño insertado con éxito")
         conn.close()
+        loader = Loader()
+        loader.insert_record("sueño")
 
     except Error as e:
         print(f"\nError al insertar datos: {e}")

@@ -52,3 +52,13 @@ class Options:
         except FileNotFoundError:
             print(Fore.RED + "No hay ningún usuario logueado." + Style.RESET_ALL)
             return None
+        
+    @staticmethod
+    def display_sleep_menu():
+        print("\nMenú de gestión de sueño, las opciones son las siguientes:\n")
+        print("1. Ver los sueños registrados")
+        print("2. Crear un registro de sueño")
+        print("3. Editar un registro de sueño")
+        print("4. Eliminar un registro de sueño")
+        print("5. Regresar al menú principal")
+        print("6. Salir\n")

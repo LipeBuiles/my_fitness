@@ -13,7 +13,8 @@ def fetch_health():
 
     data = cursor.fetchall()
     df = pd.DataFrame(data, columns=columns)
-    df = tabulate(df, headers='keys', tablefmt='fancy_grid', showindex=False)
+    df = tabulate(df, headers='keys', tablefmt='github', showindex=False)
+    df = df.replace('|', '\033[92m|\033[0m')  # Replace '|' with green-colored '|'
     
 
     conn.close()
