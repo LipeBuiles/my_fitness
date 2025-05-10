@@ -41,7 +41,7 @@ def menu_fitness():
 
                         if in_training == '1':
 
-                            data_training = fetch_training(in_training)
+                            data_training = fetch_training()
                             inserted_id_training = insert_training(inserted_id, *data_training)
 
                             data_cadence = fetch_cadence()

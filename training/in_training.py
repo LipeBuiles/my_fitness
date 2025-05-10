@@ -1,21 +1,19 @@
 from training.list_type_training import fetch_type_training
 
-def fetch_training(in_training):
+def fetch_training():
     names = [item['name'] for item in fetch_type_training()]
-    in_training_aux = in_training
     training_options = names
     while True:
         print("Seleccione el tipo de entrenamiento:")
         for idx, option in enumerate(training_options, start=1):
             print(f"{idx}: {option}")
+
         try:
             training_idx = int(input())
-            if training_idx <= 1 or training_idx >= len(training_options):
+            if training_idx >= 1 and training_idx <= int(len(training_options)):
                 break
         except ValueError:
             print("Opción no válida. Por favor, seleccione una opción de la lista.")
-    option = training_options[int(training_idx)-1]
-    id_found = next((item['id'] for item in fetch_type_training() if item['name'] == option), None)
 
     while True:
         try:
@@ -72,7 +70,7 @@ def fetch_training(in_training):
         except ValueError:
             print("Entrada no válida. Por favor, ingrese un número entero positivo.")
 
-    return id_found, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG
+    return training_idx, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG
 
 def fetch_cadence():
     while True:
