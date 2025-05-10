@@ -62,3 +62,12 @@ class Options:
         print("4. Eliminar un registro de sueño")
         print("5. Regresar al menú principal")
         print("6. Salir\n")
+
+    @staticmethod
+    def display_goals_menu():
+        print("\nMenú de gestión de objetivos, las opciones son las siguientes:\n")
+        print("1. Ver el detalle de mis objetivos")
+        print("2. Crear un nuevo objetivo")
+        print("3. Editar valores de mis objetivos")
+        print("4. Regresar al menú principal")
+        print("5. Salir\n")

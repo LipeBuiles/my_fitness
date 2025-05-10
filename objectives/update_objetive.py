@@ -6,20 +6,7 @@ import pandas as pd
 import sys
 import time
 import json
-
-def animate_login_objetive_day():
-    print("\n")
-    texto = "Actualizando registro del objetivo del día "
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    print("\n")
+from utils.loaders import Loader
 
 def fetch_update_objetive():
 
@@ -109,9 +96,9 @@ def update_objetive(date, obj_calories, obj_steps, obj_moviment, obj_dream, id_u
         values = (obj_calories, obj_steps, obj_moviment, obj_dream, id_user_update)
         cursor.execute(query, values)
         conn.commit()
-        animate_login_objetive_day()
-        print("\nRegistro de objetivo actualizado con éxito")
         conn.close()
+        loader = Loader()
+        loader.update_record('Objetivo')
     except Error as e:
         print(f"\nError al actualizar datos: {e}")
     finally:

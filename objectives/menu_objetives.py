@@ -6,54 +6,48 @@ from objectives.objectives import fetch_create_objtives
 from objectives.insert_objetive import insert_objetive
 from objectives.read_objetive_day import fetch_objetive_day_from_db
 from objectives.update_objetive import fetch_update_objetive, update_objetive
+from utils.options import Options
+from colorama import Fore, Back, Style
+from utils.loaders import Loader
 
-def clear_console():
-    current_os = platform.system()
-    if current_os == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
 
 def menu_objetives():
-    
-    clear_console()
+
+    clear = Options()
+    clear.clear_console()    
         
     while True:
+        try:
+            while True:
+                menu = Options()
+                menu.display_goals_menu()
+                
+                option = input("Selecciona una opción: ")
+                
+                match option:
+                    case '1':
+                        fetch_objetive_day_from_db()
+                    case '2':
+                        data = fetch_create_objtives()
+                        insert_objetive(*data)
+                    case '3':
+                        print("\nLos datos del objetivo actual son los siguientes:")
+                        fetch_objetive_day_from_db()
+                        print("\n")
+                        data = fetch_update_objetive()
+                        update_objetive(*data)
+                    case '4':
+                        from menu import principal_menu
+                        principal_menu()
+                    case '5':
+                        loader = Loader()
+                        loader.exit()
+                    case _:
+                        print("Opción no válida, por favor intente de nuevo.")
 
-        print("\nMenú de gestión de sueño, las opciones son las siguientes:\n")
-        print("1. Ver el detalle de mis objetivos")
-        print("2. Crear un nuevo objetivo")
-        print("3. Editar valores de mis objetivos")
-        print("4. Regresar al menú principal")
-        print("5. Salir\n")
-
-    
-        option = input("Selecciona una opción: ")
-        
-        match option:
-            case '1':
-                fetch_objetive_day_from_db()
-            case '2':
-                data = fetch_create_objtives()
-                insert_objetive(*data)
-            case '3':
-                print("\nLos datos del objetivo actual son los siguientes:")
-                fetch_objetive_day_from_db()
-                print("\n")
-                data = fetch_update_objetive()
-                update_objetive(*data)
-            case '4':
-                from menu import principal_menu
-                principal_menu()
-            case '5':
-                if os.path.exists("logged_in_user.json"):
-                    os.remove("logged_in_user.json")
-                print("\nSaliendo...")
-                time.sleep(3)
-                sys.exit()
-
-            case _:
-                print("Opción no válida, por favor intente de nuevo.")
+        except KeyboardInterrupt:
+             clear.clear_console()
+             print(f"{Back.WHITE}{Fore.RED}\n\nCtrl+C está deshabilitado. Use la opción 6 para salir.{Style.RESET_ALL}")
 
 if __name__ == "__main__":
     menu_objetives()
