@@ -1,99 +1,6 @@
-from colorama import Fore, Style
 from database.connection import DatabaseConnection
 from mysql.connector import Error
-import sys
-import time
 import utils.loaders as Loader
-
-def animate_login_cadence():
-    print("\n")
-    texto = "Insertando registro de cadencia"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
-
-def animate_login_heart_rate():
-    print("\n")
-    texto = "Insertando registro de ritmo cardiaco"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
-
-def animate_login_pace():
-    print("\n")
-    texto = "Insertando registro de ritmo"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
-
-def animate_login_pace_for_km():
-    print("\n")
-    texto = "Insertando registro de ritmo"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
-
-def animate_stride_cm():
-    print("\n")
-    texto = "Insertando registro de zancada"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
-
-def animate_type_training():
-    print("\n")
-    texto = "Insertando tipo de entrenamiento"
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    
-    print("\n")
 
 def insert_training(id_health, id_type_training, km_distance, kcal_active, kcal_total, pace, steps, heart_rate_AVG):
     try:
@@ -213,8 +120,8 @@ def insert_type_training(name):
         values = (name,)
         cursor.execute(query, values)
         conn.commit()
-        animate_type_training()
-        print("\nTipo de entrenamiento insertado con éxito")
+        loader = Loader.Loader()
+        loader.insert_record("tipo de entrenamiento")
         conn.close()
     except Error as e:
         print(f"\nError al insertar datos: {e}")

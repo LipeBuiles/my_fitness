@@ -2,20 +2,7 @@ from database.connection import DatabaseConnection
 from colorama import Fore, Style
 import sys
 import time
-
-def animate_delete():
-    print("\n")
-    texto = "Eliminando registro del sueño "
-    iteraciones = 50
-    delay = 0.05
-    puntos = 0
-
-    for _ in range(iteraciones):
-        sys.stdout.write(Fore.BLUE + f'\r{texto}{"." * puntos}' + Style.RESET_ALL)
-        sys.stdout.flush()
-        time.sleep(delay)
-        puntos += 1
-    print("\n")
+import utils.loaders as Loader
 
 def delete_dream(id_health):
     try:
@@ -26,7 +13,8 @@ def delete_dream(id_health):
         values = (id_health,)
         cursor.execute(query, values)
         conn.commit()
-        animate_delete()
+        loader = Loader.Loader()
+        loader.delete_record('sueño')
 
     except Exception as e:
         print(f"Error: {e}")
@@ -60,37 +48,43 @@ def delete_all_data_trainig(id_training, id_health):
         values = (id_training,)
         cursor.execute(query, values)
         conn.commit()
-        print("Registro de cadencia eliminado exitosamente")
+        loader = Loader.Loader()
+        loader.delete_record('cadencia')
 
         query = "DELETE FROM heart_rate WHERE id_training = %s;"
         values = (id_training,)
         cursor.execute(query, values)
         conn.commit()
-        print("Registro de ritmo cardiaco eliminado exitosamente")
+        loader = Loader.Loader()
+        loader.delete_record('frecuencia cardiaca')
 
         query = "DELETE FROM pace WHERE id_training = %s;"
         values = (id_training,)
         cursor.execute(query, values)
         conn.commit()
-        print("Registro de ritmo eliminado exitosamente pace")
+        loader = Loader.Loader()
+        loader.delete_record('ritmo')
 
         query = "DELETE FROM pace_for_km WHERE id_training = %s;"
         values = (id_training,)
         cursor.execute(query, values)
         conn.commit()
-        print("Registro de ritmo por kilometro eliminado exitosamente")
+        loader = Loader.Loader()
+        loader.delete_record('ritmo por km')
 
         query = "DELETE FROM stride_cm WHERE id_training = %s;"
         values = (id_training,)
         cursor.execute(query, values)
         conn.commit()
-        print("Registro de zancada eliminado exitosamente ")
+        loader = Loader.Loader()
+        loader.delete_record('longitud de zancada')
 
         query = "DELETE FROM training WHERE id_health = %s;"
         values = (id_health,)
         cursor.execute(query, values)
         conn.commit()
-        print("Registro de entrenamiento eliminado exitosamente")
+        loader = Loader.Loader()
+        loader.delete_record('entrenamiento')
 
     except Exception as e:
         print(f"Error: {e}")
@@ -107,7 +101,8 @@ def delete_health(id_health):
         values = (id_health,)
         cursor.execute(query, values)
         conn.commit()
-        print("Registro de salud eliminado exitosamente")
+        loader = Loader.Loader()
+        loader.delete_record('fitness')
 
     except Exception as e:
         print(f"Error: {e}")

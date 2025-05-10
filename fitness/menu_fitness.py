@@ -73,8 +73,16 @@ def menu_fitness():
                         update_fitness(id_health)
 
                     case '4':
-                        fetch_health()
-                        id_health = int(input("Ingrese el id del registro a eliminar: "))
+                        fetch_fitness()
+                        while True:
+                            try:
+                                id_health = int(input("Ingrese el id del registro a eliminar: "))
+                                if check_health_exists(id_health):
+                                    break
+                                print(f"{Fore.RED}{Style.BRIGHT}Advertencia: No se encontró ningún registro de salud con el ID proporcionado.{Style.RESET_ALL}\n")
+                            except ValueError:
+                                print(f"{Fore.RED}{Style.BRIGHT}Error: Por favor, ingrese un número entero válido.{Style.RESET_ALL}\n")
+                        
                         id_training = search_id_train(id_health)
                         if id_training is not None:
                             delete_dream(id_health)
