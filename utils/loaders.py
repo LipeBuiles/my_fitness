@@ -55,6 +55,8 @@ class Loader:
         console.print(f"[green]Registro de {record_name} insertado exitosamente.")
         time.sleep(2)
 
+        print("\n")
+
     def update_record(self, record_name):
         """
         Displays a message indicating that a record is being updated.

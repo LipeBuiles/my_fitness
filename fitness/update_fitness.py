@@ -3,6 +3,20 @@ import json
 from datetime import datetime
 from training.in_training import fetch_training, fetch_cadence, fetch_heart_rate, fetch_pace, fetch_pace_for_km, fetch_stride_cm
 from training.insert_training import insert_training, insert_candence, insert_heart_rate, insert_pace, insert_pace_for_km, insert_stride_cm
+import utils.loaders as Loader
+
+def check_health_exists(id_health):
+    conn = DatabaseConnection().connect_to_database()
+    cursor = conn.cursor()
+    query = "SELECT COUNT(*) FROM health WHERE id = %s"
+    values = (id_health,)
+    cursor.execute(query, values)
+    result = cursor.fetchone()[0]
+    conn.close()
+    if result == 0:
+        return False
+    elif result == 1:
+        return True
 
 def get_logged_in_user_id():
     try:
@@ -74,6 +88,10 @@ def update_fitness(id_health):
             values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
             cursor.execute(query, values)
             conn.commit()
+            conn.close()
+
+            loader = Loader.Loader()
+            loader.update_record("fitness")
 
         else:
             id_training = data[0][0]
@@ -112,6 +130,9 @@ def update_fitness(id_health):
             values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
             cursor.execute(query, values)
             conn.commit()
+            conn.close()
+            loade = Loader.Loader()
+            loade.update_record("fitness")
 
     elif new_in_training == '1':  
         query = "SELECT * FROM training WHERE id_health = %s"
@@ -125,21 +146,33 @@ def update_fitness(id_health):
             cursor.execute(query, values)
             conn.commit()
 
-            data_training = fetch_training(in_training)
-            data_cadence = fetch_cadence()
-            date_heart_rate = fetch_heart_rate()
-            date_pace = fetch_pace()
-            date_pace_for_km = fetch_pace_for_km()
-            date_stride_cm = fetch_stride_cm()
-
+            data_training = fetch_training()
             inserted_id_training = insert_training(id_health, *data_training)
+
+            data_cadence = fetch_cadence()
             insert_candence(inserted_id_training, *data_cadence)
+
+            date_heart_rate = fetch_heart_rate()
             insert_heart_rate(inserted_id_training, *date_heart_rate)
+
+            date_pace = fetch_pace()
             insert_pace(inserted_id_training, *date_pace)
+
+            date_pace_for_km = fetch_pace_for_km()
             insert_pace_for_km(inserted_id_training, *date_pace_for_km)
+
+            date_stride_cm = fetch_stride_cm()
             insert_stride_cm(inserted_id_training, *date_stride_cm)
+            conn.close()
 
         else:
+            query = "UPDATE health SET date = %s, calories = %s, steps = %s, distance = %s, moviment = %s, in_training = %s, id_user_update = %s, update_date = %s WHERE id = %s"
+            values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
+            cursor.execute(query, values)
+            conn.commit()
+            loader = Loader.Loader()
+            loader.update_record("fitness")
+
             id_training = data[0][0]
             id_type_training = data[0][2]
             km_distance = data[0][3]
@@ -179,6 +212,13 @@ def update_fitness(id_health):
             if new_heart_rate_AVG == "":
                 new_heart_rate_AVG = heart_rate_AVG
 
+            query = "UPDATE training SET id_type_training = %s, km_distance = %s, kcal_active = %s, kcal_total = %s, pace = %s, steps = %s, heart_rate_AVG = %s WHERE id_health = %s"
+            values = (new_id_type_training, new_km_distance, new_kcal_active, new_kcal_total, new_pace, new_steps, new_heart_rate_AVG, id_health)
+            cursor.execute(query, values)
+            conn.commit()
+            loader = Loader.Loader()
+            loader.update_record("training")
+
             query = "SELECT * FROM cadence WHERE id_training = %s"
             values = (id_training,)
             cursor.execute(query, values)
@@ -194,6 +234,13 @@ def update_fitness(id_health):
             new_cadence_max = input(f"La cadencia máxima actual es {cadence_max}. Ingrese la nueva cadencia máxima o enter para conservar la actual: ")
             if new_cadence_max == "":
                 new_cadence_max = cadence_max
+
+            query = "UPDATE cadence SET cadence_AVG = %s, cadence_max = %s WHERE id_training = %s"
+            values = (new_cadence_AVG, new_cadence_max, id_training)
+            cursor.execute(query, values)
+            conn.commit()
+            loader = Loader.Loader()
+            loader.update_record("cadencia")
 
             query = "SELECT * FROM heart_rate WHERE id_training = %s"
             values = (id_training,)
@@ -236,6 +283,13 @@ def update_fitness(id_health):
             if new_vo2_max == "":
                 new_vo2_max = vo2_max
 
+            query = "UPDATE heart_rate SET heart_rate_AVG = %s, heart_rate_max = %s, ligth_pace = %s, intensive_pace = %s, aerobic_pace = %s, anaerobic_pace = %s, vo2_max = %s WHERE id_training = %s"
+            values = (new_heart_rate_AVG, new_heart_rate_max, new_ligth_pace, new_intensive_pace, new_aerobic_pace, new_anaerobic_pace, new_vo2_max, id_training)
+            cursor.execute(query, values)
+            conn.commit()
+            loader = Loader.Loader()
+            loader.update_record("ritmo cardiaco")
+
             query = "SELECT * FROM pace WHERE id_training = %s"
             values = (id_training,)
             cursor.execute(query, values)
@@ -252,6 +306,13 @@ def update_fitness(id_health):
             if new_pace_max == "":
                 new_pace_max = pace_max
 
+            query = "UPDATE pace SET pace = %s, pace_max = %s WHERE id_training = %s"
+            values = (new_pace, new_pace_max, id_training)
+            cursor.execute(query, values)
+            conn.commit()
+            loader = Loader.Loader()
+            loader.update_record("ritmo")
+
             query = "SELECT * FROM stride_cm WHERE id_training = %s"
             values = (id_training,)
             cursor.execute(query, values)
@@ -267,41 +328,18 @@ def update_fitness(id_health):
             new_stride_max = input(f"La zancada máxima actual es {stride_max}. Ingrese la nueva zancada máxima o enter para conservar la actual: ")
             if new_stride_max == "":
                 new_stride_max = stride_max
+            
+            query = "UPDATE stride_cm SET stride_AVG = %s, stride_max = %s WHERE id_training = %s"
+            values = (new_stride_AVG, new_stride_max, id_training)
+            cursor.execute(query, values)
+            conn.commit()
+            loader = Loader.Loader()
+            loader.update_record("zancada")
 
             query = "SELECT * FROM pace_for_km WHERE id_training = %s"
             values = (id_training,)
             cursor.execute(query, values)
             data_km = cursor.fetchall()
-
-            query = "UPDATE health SET date = %s, calories = %s, steps = %s, distance = %s, moviment = %s, in_training = %s, id_user_update = %s, update_date = %s WHERE id = %s"
-            values = (new_date, new_calories, new_steps, new_distance, new_moviment, new_in_training, id_user_update, update_date, id_health)
-            cursor.execute(query, values)
-            conn.commit()
-
-            query = "UPDATE training SET id_type_training = %s, km_distance = %s, kcal_active = %s, kcal_total = %s, pace = %s, steps = %s, heart_rate_AVG = %s WHERE id_health = %s"
-            values = (new_id_type_training, new_km_distance, new_kcal_active, new_kcal_total, new_pace, new_steps, new_heart_rate_AVG, id_health)
-            cursor.execute(query, values)
-            conn.commit()
-
-            query = "UPDATE cadence SET cadence_AVG = %s, cadence_max = %s WHERE id_training = %s"
-            values = (new_cadence_AVG, new_cadence_max, id_training)
-            cursor.execute(query, values)
-            conn.commit()
-
-            query = "UPDATE heart_rate SET heart_rate_AVG = %s, heart_rate_max = %s, ligth_pace = %s, intensive_pace = %s, aerobic_pace = %s, anaerobic_pace = %s, vo2_max = %s WHERE id_training = %s"
-            values = (new_heart_rate_AVG, new_heart_rate_max, new_ligth_pace, new_intensive_pace, new_aerobic_pace, new_anaerobic_pace, new_vo2_max, id_training)
-            cursor.execute(query, values)
-            conn.commit()
-
-            query = "UPDATE pace SET pace = %s, pace_max = %s WHERE id_training = %s"
-            values = (new_pace, new_pace_max, id_training)
-            cursor.execute(query, values)
-            conn.commit()
-
-            query = "UPDATE stride_cm SET stride_AVG = %s, stride_max = %s WHERE id_training = %s"
-            values = (new_stride_AVG, new_stride_max, id_training)
-            cursor.execute(query, values)
-            conn.commit()
 
             for i in data_km:
                     km = i[2]
@@ -315,7 +353,8 @@ def update_fitness(id_health):
                     values = (new_pace, id_training, km)
                     cursor.execute(query, values)
                     conn.commit()
+                    loader = Loader.Loader()
+                    loader.update_record("ritmo por km")
 
         conn.close()
         
-        print("Registro de fitness actualizado con éxito")

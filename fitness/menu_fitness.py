@@ -5,9 +5,9 @@ from training.insert_training import insert_training, insert_candence, insert_he
 from fitness.read_fitness import fetch_fitness_from_db, fetch_fitness
 from health.delete_health import search_id_train, delete_all_data_trainig, delete_dream, delete_health
 from health.read_health import fetch_health
-from fitness.update_fitness import update_fitness
+from fitness.update_fitness import update_fitness, check_health_exists
 from utils.options import Options
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 from utils.loaders import Loader
 from fitness.options_fitness import OptionsFitness
 
@@ -62,7 +62,14 @@ def menu_fitness():
                     case '3':
                         fetch_fitness()
                         print("\n\n")
-                        id_health = int(input("Ingrese el id del registro de fitness a editar: "))
+                        while True:
+                            try:
+                                id_health = int(input("Ingrese el id del registro de fitness a editar: "))
+                                if check_health_exists(id_health):
+                                    break
+                                print(f"{Fore.RED}{Style.BRIGHT}Advertencia: No se encontró ningún registro de salud con el ID proporcionado.{Style.RESET_ALL}\n")
+                            except ValueError:
+                                print(f"{Fore.RED}{Style.BRIGHT}Error: Por favor, ingrese un número entero válido.{Style.RESET_ALL}\n")
                         update_fitness(id_health)
 
                     case '4':
