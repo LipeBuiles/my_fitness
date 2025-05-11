@@ -2,9 +2,13 @@ from menu import principal_menu
 from database.connection import DatabaseConnection
 from users.manager_user import UserManager
 import sentry_sdk
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 sentry_sdk.init(
-    dsn="https://9114239bb338158dd03423b6237838f3@o4509120832667648.ingest.us.sentry.io/4509120834371584",
+    dsn=os.getenv('SENTRY_API_KEY'),
     send_default_pii=True,
 )
 
