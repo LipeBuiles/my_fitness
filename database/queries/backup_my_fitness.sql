@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: mySQL
--- Generation Time: May 10, 2025 at 03:40 AM
--- Server version: 9.1.0
--- PHP Version: 8.2.26
+-- Host: mysql_db
+-- Generation Time: May 24, 2025 at 03:32 AM
+-- Server version: 8.4.5
+-- PHP Version: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `my_fitness`
+-- Database: `my_fitness_db`
 --
 
 -- --------------------------------------------------------
@@ -71,7 +71,7 @@ CREATE TABLE `cadence` (
   `id_training` int DEFAULT NULL,
   `cadence_AVG` int DEFAULT NULL,
   `cadence_max` int DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `cadence`
@@ -84,7 +84,8 @@ INSERT INTO `cadence` (`id`, `id_training`, `cadence_AVG`, `cadence_max`) VALUES
 (5, 5, 0, 0),
 (6, 6, 0, 0),
 (7, 7, 0, 0),
-(8, 8, 157, 175);
+(8, 8, 157, 175),
+(9, 9, 111, 139);
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,7 @@ CREATE TABLE `dream` (
   `heart_rate` int DEFAULT NULL,
   `total_dream` time DEFAULT NULL,
   `id_health` int DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,7 @@ CREATE TABLE `health` (
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `id_user_update` int DEFAULT NULL,
   `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `health`
@@ -145,7 +146,8 @@ INSERT INTO `health` (`id`, `date`, `calories`, `steps`, `distance`, `moviment`,
 (17, '2025-04-30', 1424, 6303, 2.70, 27, '1', 1, '2025-05-03 02:06:32', 1, '2025-05-03 02:27:28'),
 (18, '2025-04-29', 1660, 7381, 2.50, 27, '1', 1, '2025-05-03 02:13:00', 1, '2025-05-03 02:13:00'),
 (19, '2025-04-28', 1239, 6089, 2.50, 27, '1', 1, '2025-05-03 02:19:15', 1, '2025-05-03 02:19:15'),
-(30, '2025-04-16', 1726, 15686, 12.25, 87, '1', 1, '2025-05-10 03:32:08', 1, '2025-05-10 03:32:08');
+(30, '2025-04-16', 1726, 15686, 12.25, 87, '1', 1, '2025-05-10 03:32:08', 1, '2025-05-10 03:32:08'),
+(31, '2025-05-15', 1323, 9557, 6.72, 77, '1', 1, '2025-05-24 03:24:42', 1, '2025-05-24 03:24:42');
 
 -- --------------------------------------------------------
 
@@ -163,7 +165,7 @@ CREATE TABLE `heart_rate` (
   `aerobic_pace` time DEFAULT NULL,
   `anaerobic_pace` time DEFAULT NULL,
   `vo2_max` time DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `heart_rate`
@@ -176,7 +178,8 @@ INSERT INTO `heart_rate` (`id`, `id_training`, `heart_rate_AVG`, `heart_rate_max
 (5, 5, 92, 142, '00:19:47', '00:03:07', '00:00:49', '00:00:00', '00:00:00'),
 (6, 6, 98, 133, '00:59:00', '00:02:08', '00:00:05', '00:00:00', '00:00:00'),
 (7, 7, 102, 163, '00:24:02', '00:03:50', '00:06:44', '00:01:29', '00:00:00'),
-(8, 8, 131, 153, '00:12:39', '00:08:02', '00:37:20', '00:01:38', '00:00:00');
+(8, 8, 131, 153, '00:12:39', '00:08:02', '00:37:20', '00:01:38', '00:00:00'),
+(9, 9, 114, 137, '00:23:21', '00:23:40', '00:02:09', '00:00:00', '00:00:00');
 
 -- --------------------------------------------------------
 
@@ -195,7 +198,7 @@ CREATE TABLE `objetives_day` (
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `id_user_update` int DEFAULT NULL,
   `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `objetives_day`
@@ -290,7 +293,8 @@ INSERT INTO `pace` (`id`, `id_training`, `pace`, `pace_max`) VALUES
 (5, 5, '00:00:00', '00:00:00'),
 (6, 6, '00:00:00', '00:00:00'),
 (7, 7, '00:00:00', '00:00:00'),
-(8, 8, '00:07:19', '00:06:14');
+(8, 8, '00:07:19', '00:06:14'),
+(9, 9, '00:12:03', '00:07:23');
 
 -- --------------------------------------------------------
 
@@ -303,7 +307,7 @@ CREATE TABLE `pace_for_km` (
   `id_training` int DEFAULT NULL,
   `km` int DEFAULT NULL,
   `pace` time DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `pace_for_km`
@@ -324,7 +328,11 @@ INSERT INTO `pace_for_km` (`id`, `id_training`, `km`, `pace`) VALUES
 (13, 8, 5, '00:08:07'),
 (14, 8, 6, '00:07:54'),
 (15, 8, 7, '00:08:07'),
-(16, 8, 8, '00:07:59');
+(16, 8, 8, '00:07:59'),
+(17, 9, 1, '00:12:33'),
+(18, 9, 2, '00:12:26'),
+(19, 9, 3, '00:11:38'),
+(20, 9, 4, '00:11:28');
 
 -- --------------------------------------------------------
 
@@ -337,7 +345,7 @@ CREATE TABLE `stride_cm` (
   `id_training` int DEFAULT NULL,
   `stride_AVG` int DEFAULT NULL,
   `stride_max` int DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `stride_cm`
@@ -350,7 +358,8 @@ INSERT INTO `stride_cm` (`id`, `id_training`, `stride_AVG`, `stride_max`) VALUES
 (5, 5, 0, 0),
 (6, 6, 0, 0),
 (7, 7, 0, 0),
-(8, 8, 157, 175);
+(8, 8, 157, 175),
+(9, 9, 74, 124);
 
 -- --------------------------------------------------------
 
@@ -368,7 +377,7 @@ CREATE TABLE `training` (
   `pace` time DEFAULT NULL,
   `steps` int DEFAULT NULL,
   `heart_rate_AVG` int DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `training`
@@ -381,7 +390,8 @@ INSERT INTO `training` (`id`, `id_health`, `id_type_training`, `km_distance`, `k
 (5, 17, 2, 0.00, 0, 527, '00:00:00', 0, 92),
 (6, 18, 2, 0.00, 0, 504, '01:10:00', 0, 98),
 (7, 19, 2, 0.00, 0, 385, '01:00:09', 0, 102),
-(8, 30, 2, 8.19, 547, 662, '00:07:19', 9418, 131);
+(8, 30, 2, 8.19, 547, 662, '00:07:19', 9418, 131),
+(9, 31, 5, 4.00, 379, 471, '00:48:16', 5373, 114);
 
 -- --------------------------------------------------------
 
@@ -418,14 +428,14 @@ CREATE TABLE `users` (
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `state` enum('0','1','2','3') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `user_name`, `email`, `password`, `state`) VALUES
-(1, 'Juan Builes', 'Builes', 'juan_builes@hotmail.com', '$2b$12$a02sMMfaXIHNi.JRn7on2.IRzAqXO8kSZwDbP0rAz91bZDfxHYjO6', '1'),
+(1, 'Juan Builes', 'Builes', 'juan_builes@hotmail.com', '$2b$12$ox.l.4aKOdWD0tDUcXdkp.M.q/jaA7FRLXuURsa816wUaEPb/WAG6', '1'),
 (2, 'Admin', 'Admin', 'lipebuiles@icloud.com', '$2b$12$AZdsq7Z1i0KZfQyTOvYuauz9y7d2ZGT0CXswQB4e84KpJnLWi7j6.', '1'),
 (3, 'Respaldo', 'Respaldo', 'lipebuiles@gmail.com', '$2b$12$2as49k9BZDmX.g0z/uqbd.pXxCd2011YQVgEV3KMenDCo.4S6tDSa', '1'),
 (4, 'SuperAdmin', 'root', 'juanfelipe.builes@movilbox.net', '$2b$12$qO6JYn5BF32txYQpq1AMAOk/4oxTtvfXY2KkHElGqtUZ3OvF1uqMu', '1'),
@@ -534,7 +544,7 @@ ALTER TABLE `audith_objetives_day`
 -- AUTO_INCREMENT for table `cadence`
 --
 ALTER TABLE `cadence`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `dream`
@@ -546,43 +556,43 @@ ALTER TABLE `dream`
 -- AUTO_INCREMENT for table `health`
 --
 ALTER TABLE `health`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `heart_rate`
 --
 ALTER TABLE `heart_rate`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `objetives_day`
 --
 ALTER TABLE `objetives_day`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pace`
 --
 ALTER TABLE `pace`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pace_for_km`
 --
 ALTER TABLE `pace_for_km`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `stride_cm`
 --
 ALTER TABLE `stride_cm`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `type_training`
@@ -594,7 +604,7 @@ ALTER TABLE `type_training`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
