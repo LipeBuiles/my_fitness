@@ -157,5 +157,9 @@ cython_debug/
 # Ignore dockerfile
 Dockerfile
 
+# Ignore docker-compose files
+docker-compose.yml
+docker-compose.yaml
+
 # Ignore json files session
 logged_in_user.json

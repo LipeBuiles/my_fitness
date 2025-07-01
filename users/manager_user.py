@@ -1,6 +1,7 @@
 from colorama import init, Fore, Back, Style
 from users.recovey_user import RecoveryUser
 from mysql.connector import Error
+from utils.loaders import Loader
 import bcrypt
 import getpass
 import json
@@ -48,7 +49,8 @@ class UserManager:
                                 try:
                                     with open('logged_in_user.json', 'w') as f:
                                         json.dump({'id': id}, f)
-                                    print(Fore.GREEN + "ID del usuario guardado correctamente." + Style.RESET_ALL)
+                                    loader = Loader()
+                                    loader.loading()
                                 except Exception as e:
                                     print(Fore.RED + f"Error al guardar el ID del usuario: {e}" + Style.RESET_ALL)
                                 return True

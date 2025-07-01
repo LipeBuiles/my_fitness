@@ -31,6 +31,27 @@
 *   Docker (optional, for containerized deployment)
 *   Git (for cloning the repository)
 
+## Quick Start with Docker
+
+If you want to get started quickly using Docker, run these commands in sequence:
+
+```bash
+# Create the Docker network
+docker network create my_fitness_network
+
+# Start database services
+docker-compose up -d
+
+# Build the Python application image
+docker build -t python-my_fitness .
+
+# Run the application
+docker run -it --rm --name Python-Console \
+  --network my_fitness_network \
+  -v /$(pwd)/:/usr/src/app \
+  python-my_fitness
+```
+
 ## Getting Started
 
 ### 1. Clone the Repository
@@ -89,18 +110,39 @@ You can set up and run the project either locally using a Python virtual environ
 
 #### Option B: Docker Setup
 
-1.  **Build the Docker Image:**
-    Ensure Docker is running, then in the project root directory:
+This project uses Docker for containerization with MySQL database and custom network configuration.
+
+1.  **Create Docker Network:**
+    First, create a custom Docker network to allow communication between containers:
     ```bash
-    docker build -t my_fitness_app .
+    docker network create my_fitness_network
     ```
 
-2.  **Run the Docker Container:**
-    To run the application using the Docker image and pass the environment variables from your `.env` file:
+2.  **Start Services with Docker Compose:**
+    Start the MySQL database and other services defined in docker-compose.yml:
     ```bash
-    docker run -it --rm --env-file .env my_fitness_app
+    docker-compose up -d
     ```
-    *(Note: Ensure your `DatabaseConnection` in `database/connection.py` is configured to use environment variables for database credentials if you plan to connect to an external/host MySQL server from within Docker. If MySQL is also running in Docker, you might need to set up Docker networking.)*
+
+3.  **Build the Python Application Image:**
+    Build the Docker image for the Python application:
+    ```bash
+    docker build -t python-my_fitness .
+    ```
+
+4.  **Run the Python Application:**
+    Run the Python application in an interactive container connected to the network:
+    ```bash
+    docker run -it --rm --name Python-Console \
+      --network my_fitness_network \
+      -v /$(pwd)/:/usr/src/app \
+      python-my_fitness
+    ```
+
+**Notes:**
+- The application runs in interactive mode with volume mounting for development
+- The custom network (`my_fitness_network`) enables communication between the Python app and MySQL database
+- The volume mount allows real-time code changes without rebuilding the image
 
 ## Project Structure
 
