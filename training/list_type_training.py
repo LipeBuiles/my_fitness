@@ -4,7 +4,7 @@ def fetch_type_training():
     conn = DatabaseConnection().connect_to_database()
     cursor = conn.cursor()
 
-    query = "SELECT * FROM type_training ORDER BY name ASC"
+    query = "SELECT * FROM type_training ORDER BY id ASC"
     cursor.execute(query)
 
     data = cursor.fetchall()

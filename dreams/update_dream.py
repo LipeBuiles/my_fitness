@@ -12,10 +12,10 @@ from utils.loaders import Loader
 def get_dream(id_dream):
     fetch_dreams_df()
     df = fetch_dreams_df()
-
+    df = df[df['ID'] == id_dream]
     
-    for index, row in df.iterrows():
-        if row['ID'] == id_dream:
+    if not df.empty:    
+        for index, row in df.iterrows():
             ligth = row['Ligero']
             deep = row['Profundo']
             REM = row['REM']
@@ -55,9 +55,9 @@ def get_dream(id_dream):
 
             return id_dream, new_ligth, new_deep, new_REM, new_awake, new_heart_rate, new_total_dream, new_id_health
 
-        else:
-            print(Fore.RED + "\nEl registro de sueño no existe" + Style.RESET_ALL)
-            return None
+    else:
+        print(Fore.RED + "\nEl registro de sueño no existe" + Style.RESET_ALL)
+        return None
 
 def update_dream(id_dream, new_ligth, new_deep, new_REM, new_awake, new_heart_rate, new_total_dream, new_id_health):
     try:

@@ -14,6 +14,7 @@ def id_is_valid(id_dream):
         cursor.execute(query, values)
         result = cursor.fetchone()
         if not result[0]:
+            print(result)
             print("\nEl registro no existe")
         else:
             print("\nRegistro encontrado")
