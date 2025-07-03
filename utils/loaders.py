@@ -49,7 +49,7 @@ class Loader:
         """
         console = Console()
 
-        for step in track(range(100), description=f"Processing {record_name} \n"):
+        for step in track(range(100), description=f"Procesando {record_name} \n"):
             time.sleep(0.05)
 
         console.print(f"[green]Registro de {record_name} insertado exitosamente.")
@@ -66,7 +66,7 @@ class Loader:
         """
         console = Console()
 
-        for step in track(range(100), description=f"Processing {record_name} \n"):
+        for step in track(range(100), description=f"Procesando {record_name} \n"):
             time.sleep(0.05)
 
         console.print(f"[green]Registro de {record_name} actualizado exitosamente.")
@@ -81,7 +81,7 @@ class Loader:
         """
         console = Console()
 
-        for step in track(range(100), description=f"Processing {record_name} \n"):
+        for step in track(range(100), description=f"Procesando {record_name} \n"):
             time.sleep(0.05)
 
         console.print(f"[green]Registro de {record_name} eliminado exitosamente.")

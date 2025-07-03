@@ -144,6 +144,87 @@ This project uses Docker for containerization with MySQL database and custom net
 - The custom network (`my_fitness_network`) enables communication between the Python app and MySQL database
 - The volume mount allows real-time code changes without rebuilding the image
 
+## Docker Compose Demo
+
+Below is a sample `docker-compose.yml` file that can be used to quickly set up the My Fitness application environment:
+
+```yaml
+version: '3.8'
+services:
+  mysql8:
+    image: mysql:8
+    container_name: my_fitness_mysql
+    command: --mysql-native-password=ON
+    environment:
+      MYSQL_ROOT_PASSWORD: demo_password
+      MYSQL_DATABASE: my_fitness_db
+      MYSQL_USER: my_fitness_user
+      MYSQL_PASSWORD: my_fitness_password
+    ports:
+      - "3306:3306"
+    networks:
+      - my_fitness_network
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: 
+        - "CMD-SHELL"
+        - "mysqladmin ping -u root -p$$MYSQL_ROOT_PASSWORD"
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: my_fitness_phpmyadmin
+    depends_on:
+      mysql8:
+        condition: service_healthy
+    environment:
+      PMA_HOST: my_fitness_mysql
+    ports:
+      - "8080:80"
+    networks:
+      - my_fitness_network
+
+  # Python application (optional)
+  app:
+    build: .
+    container_name: my_fitness_app
+    depends_on:
+      mysql8:
+        condition: service_healthy
+    environment:
+      - DB_HOST=my_fitness_mysql
+      - DB_DATABASE=my_fitness_db
+      - DB_USER=my_fitness_user
+      - DB_PASSWORD=my_fitness_password
+    networks:
+      - my_fitness_network
+    volumes:
+      - .:/app
+
+networks:
+  my_fitness_network:
+    name: my_fitness_network
+
+volumes:
+  mysql_data:
+```
+
+### Connecting to MySQL using DataGrid
+
+To connect to the MySQL database using DataGrid or any other database management tool, use the following connection details:
+
+- **Host**: localhost
+- **Port**: 3306
+- **Database**: my_fitness_db
+- **Username**: my_fitness_user (or root)
+- **Password**: my_fitness_password (or demo_password for root)
+
+Make sure the Docker containers are running before attempting to connect.
+
 ## Project Structure
 
 ```
