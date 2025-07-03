@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: my_fitness_mysql
--- Generation Time: Jul 01, 2025 at 06:03 AM
+-- Generation Time: Jul 03, 2025 at 02:31 AM
 -- Server version: 8.4.5
 -- PHP Version: 8.2.27
 
@@ -86,7 +86,8 @@ INSERT INTO `cadence` (`id`, `id_training`, `cadence_AVG`, `cadence_max`) VALUES
 (7, 7, 0, 0),
 (8, 8, 157, 175),
 (9, 9, 111, 139),
-(10, 10, 156, 167);
+(10, 10, 156, 167),
+(11, 11, 109, 124);
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,9 @@ CREATE TABLE `dream` (
 --
 
 INSERT INTO `dream` (`id`, `ligth`, `deep`, `REM`, `awake`, `heart_rate`, `total_dream`, `id_health`) VALUES
-(1, '00:03:09', '02:28:00', '01:09:00', 5, 59, '06:46:00', 32);
+(1, '00:03:09', '02:28:00', '01:09:00', 5, 59, '06:46:00', 32),
+(2, '02:06:00', '01:01:00', '00:43:00', 1, 61, '03:50:00', 33),
+(3, '02:44:00', '02:24:00', '01:55:00', 1, 61, '07:03:00', 34);
 
 -- --------------------------------------------------------
 
@@ -156,7 +159,37 @@ INSERT INTO `health` (`id`, `date`, `calories`, `steps`, `distance`, `moviment`,
 (19, '2025-04-28', 1239, 6089, 2.50, 27, '1', 1, '2025-05-03 02:19:15', 1, '2025-05-03 02:19:15'),
 (30, '2025-04-16', 1726, 15686, 12.25, 87, '1', 1, '2025-05-10 03:32:08', 1, '2025-05-10 03:32:08'),
 (31, '2025-05-15', 1323, 9557, 6.72, 77, '1', 1, '2025-05-24 03:24:42', 1, '2025-05-24 03:24:42'),
-(32, '2025-06-29', 1749, 19669, 16.16, 143, '1', 1, '2025-07-01 05:53:12', 1, '2025-07-01 05:53:12');
+(32, '2025-06-29', 1749, 19669, 16.16, 143, '1', 1, '2025-07-01 05:53:12', 1, '2025-07-01 05:53:12'),
+(33, '2025-07-01', 1006, 3196, 2.09, 2, '0', 1, '2025-07-02 23:59:59', 1, '2025-07-02 23:59:59'),
+(34, '2025-06-30', 985, 7222, 4.73, 36, '0', 1, '2025-07-03 00:41:04', 1, '2025-07-03 00:41:04'),
+(35, '2025-06-28', 794, 4567, 2.99, 25, '0', 1, '2025-07-03 01:12:38', 1, '2025-07-03 01:12:38'),
+(36, '2025-06-27', 914, 4264, 2.79, 13, '0', 1, '2025-07-03 01:13:18', 1, '2025-07-03 01:13:18'),
+(37, '2025-06-26', 1550, 12172, 9.76, 28, '1', 1, '2025-07-03 01:14:26', 1, '2025-07-03 01:14:26'),
+(38, '2025-06-25', 1305, 3520, 2.30, 10, '0', 1, '2025-07-03 01:19:53', 1, '2025-07-03 01:19:53'),
+(39, '2025-06-24', 776, 2370, 1.55, 13, '0', 1, '2025-07-03 01:20:35', 1, '2025-07-03 01:20:35'),
+(40, '2025-06-23', 553, 1458, 0.95, 4, '0', 1, '2025-07-03 01:21:11', 1, '2025-07-03 01:21:11'),
+(41, '2025-06-22', 723, 2866, 1.87, 10, '0', 1, '2025-07-03 01:21:56', 1, '2025-07-03 01:21:56'),
+(42, '2025-06-21', 753, 4343, 2.84, 22, '0', 1, '2025-07-03 01:23:02', 1, '2025-07-03 01:23:02'),
+(43, '2025-06-20', 727, 2604, 1.71, 9, '0', 1, '2025-07-03 01:23:44', 1, '2025-07-03 01:23:44'),
+(44, '2025-06-19', 1112, 4657, 2.98, 24, '0', 1, '2025-07-03 01:24:53', 1, '2025-07-03 01:29:55'),
+(45, '2025-06-17', 824, 2798, 1.83, 16, '0', 1, '2025-07-03 01:28:40', 1, '2025-07-03 01:46:01'),
+(46, '2025-06-18', 1280, 4454, 2.92, 18, '0', 1, '2025-07-03 01:30:19', 1, '2025-07-03 01:46:01'),
+(47, '2025-06-16', 1071, 4685, 3.07, 17, '0', 1, '2025-07-03 01:31:14', 1, '2025-07-03 01:46:01'),
+(49, '2025-06-15', 591, 2288, 1.50, 10, '0', 1, '2025-07-03 01:32:10', 1, '2025-07-03 01:46:01'),
+(50, '2025-06-14', 653, 1959, 1.28, 7, '0', 1, '2025-07-03 01:32:44', 1, '2025-07-03 01:46:01'),
+(51, '2025-06-13', 1153, 4075, 2.67, 12, '0', 1, '2025-07-03 01:33:10', 1, '2025-07-03 01:46:01'),
+(52, '2025-06-12', 833, 8477, 5.54, 45, '0', 1, '2025-07-03 01:33:45', 1, '2025-07-03 01:46:01'),
+(53, '2025-06-11', 1114, 3155, 2.07, 16, '0', 1, '2025-07-03 01:34:12', 1, '2025-07-03 01:46:01'),
+(54, '2025-06-10', 1116, 3549, 2.33, 12, '0', 1, '2025-07-03 01:34:40', 1, '2025-07-03 01:46:01'),
+(55, '2025-06-09', 1047, 2931, 1.91, 4, '0', 1, '2025-07-03 01:35:09', 1, '2025-07-03 01:46:01'),
+(57, '2025-06-08', 795, 4624, 3.01, 29, '0', 1, '2025-07-03 01:37:31', 1, '2025-07-03 01:46:01'),
+(58, '2025-06-07', 857, 10309, 6.75, 80, '0', 1, '2025-07-03 01:39:16', 1, '2025-07-03 01:46:01'),
+(59, '2025-06-06', 970, 2738, 1.79, 9, '0', 1, '2025-07-03 01:39:47', 1, '2025-07-03 01:46:01'),
+(60, '2025-06-05', 1074, 8972, 5.87, 67, '0', 1, '2025-07-03 01:40:15', 1, '2025-07-03 02:28:07'),
+(61, '2025-06-04', 887, 2534, 1.66, 11, '0', 1, '2025-07-03 01:41:04', 1, '2025-07-03 01:46:01'),
+(62, '2025-06-03', 563, 1728, 1.13, 2, '0', 1, '2025-07-03 01:41:29', 1, '2025-07-03 01:46:01'),
+(63, '2025-06-02', 0, 0, 0.00, 0, '0', 1, '2025-07-03 01:41:48', 1, '2025-07-03 01:41:48'),
+(64, '2025-06-01', 0, 0, 0.00, 0, '0', 1, '2025-07-03 01:42:14', 1, '2025-07-03 01:46:01');
 
 -- --------------------------------------------------------
 
@@ -189,7 +222,34 @@ INSERT INTO `heart_rate` (`id`, `id_training`, `heart_rate_AVG`, `heart_rate_max
 (7, 7, 102, 163, '00:24:02', '00:03:50', '00:06:44', '00:01:29', '00:00:00'),
 (8, 8, 131, 153, '00:12:39', '00:08:02', '00:37:20', '00:01:38', '00:00:00'),
 (9, 9, 114, 137, '00:23:21', '00:23:40', '00:02:09', '00:00:00', '00:00:00'),
-(10, 10, 168, 179, '00:00:00', '00:00:21', '00:01:13', '00:24:05', '00:40:50');
+(10, 10, 168, 179, '00:00:00', '00:00:21', '00:01:13', '00:24:05', '00:40:50'),
+(11, 11, 115, 137, '00:26:25', '00:45:06', '00:02:42', '00:00:00', '00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `monthly_training_health_summary`
+-- (See below for the actual view)
+--
+CREATE TABLE `monthly_training_health_summary` (
+`month` varchar(7)
+,`training_type` varchar(50)
+,`trainings_count_per_day` decimal(42,0)
+,`total_km_distance` double(19,2)
+,`avg_km_distance` double(27,10)
+,`total_kcal_active` decimal(54,0)
+,`avg_kcal_active` decimal(18,8)
+,`total_kcal_total` decimal(54,0)
+,`avg_kcal_total` decimal(18,8)
+,`avg_pace` time(6)
+,`total_training_steps` decimal(54,0)
+,`avg_training_steps` decimal(18,8)
+,`avg_heart_rate` decimal(18,8)
+,`total_health_calories` decimal(54,0)
+,`total_health_steps` decimal(54,0)
+,`total_health_distance` double(19,2)
+,`avg_moviment` decimal(18,8)
+);
 
 -- --------------------------------------------------------
 
@@ -305,7 +365,8 @@ INSERT INTO `pace` (`id`, `id_training`, `pace`, `pace_max`) VALUES
 (7, 7, '00:00:00', '00:00:00'),
 (8, 8, '00:07:19', '00:06:14'),
 (9, 9, '00:12:03', '00:07:23'),
-(10, 10, '00:06:33', '00:04:07');
+(10, 10, '00:06:33', '00:04:07'),
+(11, 11, '00:10:19', '00:06:35');
 
 -- --------------------------------------------------------
 
@@ -353,7 +414,14 @@ INSERT INTO `pace_for_km` (`id`, `id_training`, `km`, `pace`) VALUES
 (27, 10, 7, '00:06:31'),
 (28, 10, 8, '00:06:31'),
 (29, 10, 9, '00:07:07'),
-(30, 10, 10, '00:07:07');
+(30, 10, 10, '00:07:07'),
+(31, 11, 1, '00:11:29'),
+(32, 11, 2, '00:10:39'),
+(33, 11, 3, '00:11:31'),
+(34, 11, 4, '00:10:51'),
+(35, 11, 5, '00:09:11'),
+(36, 11, 6, '00:07:23'),
+(37, 11, 7, '00:11:02');
 
 -- --------------------------------------------------------
 
@@ -381,7 +449,8 @@ INSERT INTO `stride_cm` (`id`, `id_training`, `stride_AVG`, `stride_max`) VALUES
 (7, 7, 0, 0),
 (8, 8, 157, 175),
 (9, 9, 74, 124),
-(10, 10, 97, 190);
+(10, 10, 97, 190),
+(11, 11, 88, 129);
 
 -- --------------------------------------------------------
 
@@ -412,9 +481,10 @@ INSERT INTO `training` (`id`, `id_health`, `id_type_training`, `km_distance`, `k
 (5, 17, 2, 0.00, 0, 527, '00:00:00', 0, 92),
 (6, 18, 2, 0.00, 0, 504, '01:10:00', 0, 98),
 (7, 19, 2, 0.00, 0, 385, '01:00:09', 0, 102),
-(8, 30, 2, 8.19, 547, 662, '00:07:19', 9418, 131),
-(9, 31, 5, 4.00, 379, 471, '00:48:16', 5373, 114),
-(10, 32, 3, 10.00, 1017, 1143, '00:06:33', 10259, 168);
+(8, 30, 3, 8.19, 547, 662, '00:07:19', 9418, 131),
+(9, 31, 1, 4.00, 379, 471, '00:48:16', 5373, 114),
+(10, 32, 3, 10.00, 1017, 1143, '00:06:33', 10259, 168),
+(11, 37, 1, 7.00, 542, 681, '00:10:19', 7937, 115);
 
 -- --------------------------------------------------------
 
@@ -567,25 +637,25 @@ ALTER TABLE `audith_objetives_day`
 -- AUTO_INCREMENT for table `cadence`
 --
 ALTER TABLE `cadence`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `dream`
 --
 ALTER TABLE `dream`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `health`
 --
 ALTER TABLE `health`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `heart_rate`
 --
 ALTER TABLE `heart_rate`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `objetives_day`
@@ -597,25 +667,25 @@ ALTER TABLE `objetives_day`
 -- AUTO_INCREMENT for table `pace`
 --
 ALTER TABLE `pace`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pace_for_km`
 --
 ALTER TABLE `pace_for_km`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `stride_cm`
 --
 ALTER TABLE `stride_cm`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `type_training`
@@ -628,6 +698,15 @@ ALTER TABLE `type_training`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `monthly_training_health_summary`
+--
+DROP TABLE IF EXISTS `monthly_training_health_summary`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `monthly_training_health_summary`  AS SELECT `daily_summary`.`month` AS `month`, `daily_summary`.`training_type` AS `training_type`, sum(`daily_summary`.`trainings_per_day`) AS `trainings_count_per_day`, sum(`daily_summary`.`total_km_distance`) AS `total_km_distance`, avg(`daily_summary`.`avg_km_distance`) AS `avg_km_distance`, sum(`daily_summary`.`total_kcal_active`) AS `total_kcal_active`, avg(`daily_summary`.`avg_kcal_active`) AS `avg_kcal_active`, sum(`daily_summary`.`total_kcal_total`) AS `total_kcal_total`, avg(`daily_summary`.`avg_kcal_total`) AS `avg_kcal_total`, sec_to_time(avg(`daily_summary`.`avg_pace_seconds`)) AS `avg_pace`, sum(`daily_summary`.`total_training_steps`) AS `total_training_steps`, avg(`daily_summary`.`avg_training_steps`) AS `avg_training_steps`, avg(`daily_summary`.`avg_heart_rate`) AS `avg_heart_rate`, sum(`daily_summary`.`total_health_calories`) AS `total_health_calories`, sum(`daily_summary`.`total_health_steps`) AS `total_health_steps`, sum(`daily_summary`.`total_health_distance`) AS `total_health_distance`, avg(`daily_summary`.`avg_moviment`) AS `avg_moviment` FROM (select date_format(`h`.`date`,'%Y-%m') AS `month`,`tt`.`name` AS `training_type`,cast(`h`.`date` as date) AS `training_day`,count(0) AS `trainings_per_day`,sum(`t`.`km_distance`) AS `total_km_distance`,avg(`t`.`km_distance`) AS `avg_km_distance`,sum(`t`.`kcal_active`) AS `total_kcal_active`,avg(`t`.`kcal_active`) AS `avg_kcal_active`,sum(`t`.`kcal_total`) AS `total_kcal_total`,avg(`t`.`kcal_total`) AS `avg_kcal_total`,avg(time_to_sec(`t`.`pace`)) AS `avg_pace_seconds`,sum(`t`.`steps`) AS `total_training_steps`,avg(`t`.`steps`) AS `avg_training_steps`,avg(`t`.`heart_rate_AVG`) AS `avg_heart_rate`,sum(`h`.`calories`) AS `total_health_calories`,sum(`h`.`steps`) AS `total_health_steps`,sum(`h`.`distance`) AS `total_health_distance`,avg(`h`.`moviment`) AS `avg_moviment` from ((`training` `t` join `health` `h` on((`t`.`id_health` = `h`.`id`))) join `type_training` `tt` on((`t`.`id_type_training` = `tt`.`id`))) where (`h`.`in_training` = '1') group by `month`,`training_type`,`training_day`) AS `daily_summary` GROUP BY `daily_summary`.`month`, `daily_summary`.`training_type` ORDER BY `daily_summary`.`month` ASC, `daily_summary`.`training_type` ASC ;
 
 --
 -- Constraints for dumped tables
