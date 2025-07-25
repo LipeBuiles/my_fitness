@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: my_fitness_mysql
--- Generation Time: Jul 03, 2025 at 02:31 AM
+-- Generation Time: Jul 23, 2025 at 03:24 AM
 -- Server version: 8.4.5
 -- PHP Version: 8.2.27
 
@@ -87,7 +87,10 @@ INSERT INTO `cadence` (`id`, `id_training`, `cadence_AVG`, `cadence_max`) VALUES
 (8, 8, 157, 175),
 (9, 9, 111, 139),
 (10, 10, 156, 167),
-(11, 11, 109, 124);
+(11, 11, 109, 124),
+(12, 12, 151, 172),
+(13, 13, 106, 119),
+(14, 14, 159, 166);
 
 -- --------------------------------------------------------
 
@@ -189,7 +192,27 @@ INSERT INTO `health` (`id`, `date`, `calories`, `steps`, `distance`, `moviment`,
 (61, '2025-06-04', 887, 2534, 1.66, 11, '0', 1, '2025-07-03 01:41:04', 1, '2025-07-03 01:46:01'),
 (62, '2025-06-03', 563, 1728, 1.13, 2, '0', 1, '2025-07-03 01:41:29', 1, '2025-07-03 01:46:01'),
 (63, '2025-06-02', 0, 0, 0.00, 0, '0', 1, '2025-07-03 01:41:48', 1, '2025-07-03 01:41:48'),
-(64, '2025-06-01', 0, 0, 0.00, 0, '0', 1, '2025-07-03 01:42:14', 1, '2025-07-03 01:46:01');
+(64, '2025-06-01', 0, 0, 0.00, 0, '0', 1, '2025-07-03 01:42:14', 1, '2025-07-03 01:46:01'),
+(70, '2025-07-02', 1025, 2771, 1.81, 8, '0', 1, '2025-07-15 23:46:51', 1, '2025-07-15 23:46:51'),
+(71, '2025-07-03', 1373, 12567, 8.22, 96, '0', 1, '2025-07-15 23:47:55', 1, '2025-07-15 23:47:55'),
+(72, '2025-07-04', 751, 2183, 1.42, 3, '0', 1, '2025-07-15 23:48:50', 1, '2025-07-15 23:48:50'),
+(73, '2025-07-05', 5, 0, 0.00, 0, '0', 1, '2025-07-15 23:49:20', 1, '2025-07-15 23:49:20'),
+(74, '2025-07-06', 508, 3519, 2.31, 23, '0', 1, '2025-07-15 23:50:14', 1, '2025-07-15 23:50:14'),
+(75, '2025-07-07', 936, 2961, 1.94, 8, '0', 1, '2025-07-15 23:51:15', 1, '2025-07-15 23:51:15'),
+(76, '2025-07-08', 1123, 4597, 8.00, 27, '0', 1, '2025-07-15 23:52:34', 1, '2025-07-15 23:52:34'),
+(77, '2025-07-09', 858, 2390, 1.57, 12, '0', 1, '2025-07-15 23:53:13', 1, '2025-07-15 23:53:13'),
+(78, '2025-07-10', 548, 1663, 1.09, 8, '0', 1, '2025-07-15 23:53:46', 1, '2025-07-15 23:53:46'),
+(79, '2025-07-11', 735, 2365, 1.55, 9, '0', 1, '2025-07-15 23:54:19', 1, '2025-07-15 23:54:19'),
+(80, '2025-07-12', 752, 2749, 1.80, 15, '0', 1, '2025-07-15 23:54:55', 1, '2025-07-15 23:54:55'),
+(81, '2025-07-13', 851, 2430, 1.59, 7, '0', 1, '2025-07-15 23:55:37', 1, '2025-07-15 23:55:37'),
+(82, '2025-07-14', 920, 3320, 2.17, 18, '0', 1, '2025-07-15 23:56:19', 1, '2025-07-15 23:56:19'),
+(83, '2025-07-21', 1783, 13315, 9.75, 74, '1', 1, '2025-07-22 03:00:42', 1, '2025-07-22 18:54:17'),
+(84, '2025-07-20', 609, 1309, 0.85, 0, '0', 1, '2025-07-22 03:06:31', 1, '2025-07-22 03:06:31'),
+(85, '2025-07-19', 724, 1982, 1.30, 12, '0', 1, '2025-07-22 03:08:03', 1, '2025-07-22 03:08:44'),
+(86, '2025-07-18', 898, 3598, 2.35, 18, '0', 1, '2025-07-22 03:39:00', 1, '2025-07-22 03:39:00'),
+(87, '2025-07-17', 1194, 12986, 9.58, 103, '1', 1, '2025-07-22 03:39:43', 1, '2025-07-22 03:39:43'),
+(88, '2025-07-16', 1231, 5270, 3.45, 9, '0', 1, '2025-07-22 03:45:42', 1, '2025-07-22 03:45:42'),
+(89, '2025-07-15', 1669, 13478, 9.66, 79, '1', 1, '2025-07-22 03:47:51', 1, '2025-07-22 03:47:51');
 
 -- --------------------------------------------------------
 
@@ -223,7 +246,10 @@ INSERT INTO `heart_rate` (`id`, `id_training`, `heart_rate_AVG`, `heart_rate_max
 (8, 8, 131, 153, '00:12:39', '00:08:02', '00:37:20', '00:01:38', '00:00:00'),
 (9, 9, 114, 137, '00:23:21', '00:23:40', '00:02:09', '00:00:00', '00:00:00'),
 (10, 10, 168, 179, '00:00:00', '00:00:21', '00:01:13', '00:24:05', '00:40:50'),
-(11, 11, 115, 137, '00:26:25', '00:45:06', '00:02:42', '00:00:00', '00:00:00');
+(11, 11, 115, 137, '00:26:25', '00:45:06', '00:02:42', '00:00:00', '00:00:00'),
+(12, 12, 145, 175, '00:00:00', '00:02:46', '00:33:37', '00:12:05', '00:01:45'),
+(13, 13, 110, 147, '00:50:35', '01:06:59', '00:04:58', '00:00:00', '00:00:00'),
+(14, 14, 152, 171, '00:00:22', '00:06:31', '00:02:26', '00:29:11', '00:01:27');
 
 -- --------------------------------------------------------
 
@@ -232,23 +258,23 @@ INSERT INTO `heart_rate` (`id`, `id_training`, `heart_rate_AVG`, `heart_rate_max
 -- (See below for the actual view)
 --
 CREATE TABLE `monthly_training_health_summary` (
-`month` varchar(7)
+`avg_heart_rate` decimal(18,8)
+,`avg_kcal_active` decimal(18,8)
+,`avg_kcal_total` decimal(18,8)
+,`avg_km_distance` double(27,10)
+,`avg_moviment` decimal(18,8)
+,`avg_pace` time(6)
+,`avg_training_steps` decimal(18,8)
+,`month` varchar(7)
+,`total_health_calories` decimal(54,0)
+,`total_health_distance` double(19,2)
+,`total_health_steps` decimal(54,0)
+,`total_kcal_active` decimal(54,0)
+,`total_kcal_total` decimal(54,0)
+,`total_km_distance` double(19,2)
+,`total_training_steps` decimal(54,0)
 ,`training_type` varchar(50)
 ,`trainings_count_per_day` decimal(42,0)
-,`total_km_distance` double(19,2)
-,`avg_km_distance` double(27,10)
-,`total_kcal_active` decimal(54,0)
-,`avg_kcal_active` decimal(18,8)
-,`total_kcal_total` decimal(54,0)
-,`avg_kcal_total` decimal(18,8)
-,`avg_pace` time(6)
-,`total_training_steps` decimal(54,0)
-,`avg_training_steps` decimal(18,8)
-,`avg_heart_rate` decimal(18,8)
-,`total_health_calories` decimal(54,0)
-,`total_health_steps` decimal(54,0)
-,`total_health_distance` double(19,2)
-,`avg_moviment` decimal(18,8)
 );
 
 -- --------------------------------------------------------
@@ -366,7 +392,10 @@ INSERT INTO `pace` (`id`, `id_training`, `pace`, `pace_max`) VALUES
 (8, 8, '00:07:19', '00:06:14'),
 (9, 9, '00:12:03', '00:07:23'),
 (10, 10, '00:06:33', '00:04:07'),
-(11, 11, '00:10:19', '00:06:35');
+(11, 11, '00:10:19', '00:06:35'),
+(12, 12, '00:08:22', '00:05:54'),
+(13, 13, '00:12:06', '00:07:36'),
+(14, 14, '00:07:59', '00:05:42');
 
 -- --------------------------------------------------------
 
@@ -421,7 +450,25 @@ INSERT INTO `pace_for_km` (`id`, `id_training`, `km`, `pace`) VALUES
 (34, 11, 4, '00:10:51'),
 (35, 11, 5, '00:09:11'),
 (36, 11, 6, '00:07:23'),
-(37, 11, 7, '00:11:02');
+(37, 11, 7, '00:11:02'),
+(38, 12, 1, '00:07:02'),
+(39, 12, 2, '00:08:31'),
+(40, 12, 3, '00:08:51'),
+(41, 12, 4, '00:09:19'),
+(42, 12, 5, '00:08:41'),
+(43, 12, 6, '00:07:44'),
+(44, 13, 1, '00:11:29'),
+(45, 13, 2, '00:11:46'),
+(46, 13, 3, '00:13:04'),
+(47, 13, 4, '00:12:28'),
+(48, 13, 5, '00:11:47'),
+(49, 13, 6, '00:11:09'),
+(50, 13, 7, '00:12:52'),
+(51, 14, 1, '00:06:10'),
+(52, 14, 2, '00:07:30'),
+(53, 14, 3, '00:07:46'),
+(54, 14, 4, '00:08:55'),
+(55, 14, 5, '00:09:32');
 
 -- --------------------------------------------------------
 
@@ -450,7 +497,10 @@ INSERT INTO `stride_cm` (`id`, `id_training`, `stride_AVG`, `stride_max`) VALUES
 (8, 8, 157, 175),
 (9, 9, 74, 124),
 (10, 10, 97, 190),
-(11, 11, 88, 129);
+(11, 11, 88, 129),
+(12, 12, 79, 188),
+(13, 13, 77, 126),
+(14, 14, 78, 190);
 
 -- --------------------------------------------------------
 
@@ -484,7 +534,10 @@ INSERT INTO `training` (`id`, `id_health`, `id_type_training`, `km_distance`, `k
 (8, 30, 3, 8.19, 547, 662, '00:07:19', 9418, 131),
 (9, 31, 1, 4.00, 379, 471, '00:48:16', 5373, 114),
 (10, 32, 3, 10.00, 1017, 1143, '00:06:33', 10259, 168),
-(11, 37, 1, 7.00, 542, 681, '00:10:19', 7937, 115);
+(11, 37, 1, 7.00, 542, 681, '00:10:19', 7937, 115),
+(12, 83, 3, 6.00, 595, 691, '00:08:22', 7583, 145),
+(13, 87, 1, 7.00, 503, 665, '01:24:50', 9002, 110),
+(14, 89, 3, 5.00, 462, 538, '00:40:01', 6365, 152);
 
 -- --------------------------------------------------------
 
@@ -637,7 +690,7 @@ ALTER TABLE `audith_objetives_day`
 -- AUTO_INCREMENT for table `cadence`
 --
 ALTER TABLE `cadence`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `dream`
@@ -649,13 +702,13 @@ ALTER TABLE `dream`
 -- AUTO_INCREMENT for table `health`
 --
 ALTER TABLE `health`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `heart_rate`
 --
 ALTER TABLE `heart_rate`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `objetives_day`
@@ -667,25 +720,25 @@ ALTER TABLE `objetives_day`
 -- AUTO_INCREMENT for table `pace`
 --
 ALTER TABLE `pace`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pace_for_km`
 --
 ALTER TABLE `pace_for_km`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `stride_cm`
 --
 ALTER TABLE `stride_cm`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `type_training`
@@ -697,7 +750,7 @@ ALTER TABLE `type_training`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 -- --------------------------------------------------------
 
