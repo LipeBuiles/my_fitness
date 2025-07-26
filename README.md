@@ -258,3 +258,6 @@ Please make sure to update tests as appropriate.
 Copyright (c) 2025 Lipe Builes.
 
 This project is licensed under the **MIT License**. This is a permissive free software license originating at the Massachusetts Institute of Technology (MIT). For the full license text, please see [MIT License](https://choosealicense.com/licenses/mit/).
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
